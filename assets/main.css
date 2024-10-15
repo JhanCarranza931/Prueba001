@@ -1,0 +1,50 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Roboto;
+}
+
+.ibrand{
+    font-family: Ibrand;
+}
+
+#__nuxt{
+    display: flex;
+}
+.borde{
+    border: 1px solid #D3D3D3;
+}
+.txtcolor{
+    color: #1F1F22;
+}
+.container_stats{
+    .container {
+        width: 100%;
+    }
+    @media (min-width: 640px) {
+        .container {
+            max-width: 640px;
+        }
+    }
+    @media (min-width: 768px) {
+        .container {
+            max-width: 768px;
+        }
+    }
+    @media (min-width: 1024px) {
+        .container {
+            max-width: 1024px;
+        }
+    }
+    @media (min-width: 1280px) {
+        .container {
+            max-width: 1280px;
+        }
+    }
+    @media (min-width: 1536px) {
+        .container {
+            max-width: 1930px;
+        }
+    }
+}
