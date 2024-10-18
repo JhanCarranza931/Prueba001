@@ -1,5 +1,5 @@
 <template>
-        <Sidebar></Sidebar>
+        <Sidebar ></Sidebar>
         <main class="w-full">
         <nav class="flex justify-between w-full h-[70px]  items-center pr-6 pl-6 border">
                 <h3 class=" capitalize ">{{ routerName }}</h3>

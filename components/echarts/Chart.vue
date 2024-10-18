@@ -1,7 +1,6 @@
 
   <template>
-  <div>
-    <h2 class="text-2xl font-bold mb-4">Asistencias</h2>
+  <div class="borde">
     <client-only>
       <v-chart class="chart" :option="chartOptions" autoresize />
     </client-only>
@@ -12,7 +11,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import VChart from 'vue-echarts'; // Asegúrate de que este componente esté importado correctamente
+import VChart from 'vue-echarts'; 
 import { use } from 'echarts/core';
 import { CanvasRenderer } from 'echarts/renderers';
 import { BarChart } from 'echarts/charts';
@@ -44,7 +43,7 @@ const chartOptions = ref({
   },
   xAxis: {
     type: 'category',
-    data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'], // Categorías del eje X
+    data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug','Sep','Oct','Nov','Dec'], // Categorías del eje X
     axisLabel: {
       rotate: 30 // Rote las etiquetas si es necesario
     }
@@ -56,7 +55,7 @@ const chartOptions = ref({
   series: [
     {
       name: 'Asistencias',
-      data: [120, 200, 150, 80, 70, 110, 130, 11], // Datos del gráfico
+      data: [120, 170, 150, 80, 70, 110, 130, 11,80, 70, 110, 130], // Datos del gráfico
       type: 'bar',
       itemStyle: {
         color: '#00DC82',
