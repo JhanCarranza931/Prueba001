@@ -1,0 +1,94 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Estado {
+  id               Int   @id @default(autoincrement()) 
+  stado_actividad  String
+
+  Actividades      Actividades[]
+}
+
+model Usuario {
+  id       Int      @id @default(autoincrement())  
+  dni       String      @unique
+  nombre    String
+  apellido  String
+  carrera   String?
+  correo    String
+  password  String
+  telefono  String? 
+
+
+  actividades Actividades[]
+  asistencias Asistencias[]
+  roles       UsuarioRoles[]
+}
+
+model Roles {
+  id   Int    @id @default(autoincrement())   
+  rol  String
+
+  usuarios UsuarioRoles[]
+}
+
+model UsuarioRoles {
+  usuario_id Int
+  rol_id     Int
+
+  usuario Usuario @relation(fields: [usuario_id], references: [id], onDelete: Cascade)
+  rol     Roles   @relation(fields: [rol_id], references: [id], onDelete: Cascade)
+
+  @@id([usuario_id, rol_id])
+}
+
+model Actividades {
+  id         Int   @id @default(autoincrement())  
+  actividad  String
+  fecha      DateTime
+  usuario_id Int?
+  estado_id  Int?
+
+  usuario    Usuario?    @relation(fields: [usuario_id], references: [id], onDelete: SetNull)
+  estado     Estado?     @relation(fields: [estado_id], references: [id], onDelete: SetNull)
+
+  Reportes   Reportes[]
+}
+
+model EstadoAsis {
+  id         Int   @id @default(autoincrement())  
+  stado_asis String
+
+  asistencias Asistencias[]
+}
+
+model Asistencias {
+  id             Int   @id @default(autoincrement())  
+  hora_entrada   DateTime
+  hora_salida    DateTime?
+  usuario_id     Int
+  estado_asis_id Int?
+
+  usuario    Usuario    @relation(fields: [usuario_id], references: [id], onDelete: Cascade)
+  estadoAsis EstadoAsis? @relation(fields: [estado_asis_id], references: [id], onDelete: SetNull)
+
+  Reportes   Reportes[]
+}
+
+model Reportes {
+  id           Int   @id @default(autoincrement())   
+  fecha        DateTime
+  actividad_id Int?
+  asistencia_id Int?
+
+  actividad    Actividades? @relation(fields: [actividad_id], references: [id], onDelete: SetNull)
+  asistencia   Asistencias? @relation(fields: [asistencia_id], references: [id], onDelete: SetNull)
+}

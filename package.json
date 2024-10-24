@@ -13,10 +13,18 @@
     "@nuxt/icon": "^1.5.3",
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/tailwindcss": "^6.12.1",
+    "@pinia/nuxt": "^0.5.5",
+    "@prisma/nuxt": "^0.0.35",
     "echarts": "^5.5.1",
     "nuxt": "^3.13.0",
     "vue": "latest",
     "vue-echarts": "^7.0.3",
     "vue-router": "latest"
+  },
+  "devDependencies": {
+    "@prisma/client": "^5.21.1"
+  },
+  "overrides": {
+    "vue": "latest"
   }
 }

@@ -1,30 +1,34 @@
 <template>
     <section class="container_stats mx-auto px-4 py-10 flex flex-col gap-10">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <StatsCard 
-          v-for="stat in stats" 
-          :title="stat.title" 
-          :value="stat.value" 
-          :increase="stat.increase"
-          :icon="stat.icon"
-        />
+          <StatsCard 
+            v-for="stat in stats" 
+            :title="stat.title" 
+            :value="stat.value" 
+            :increase="stat.increase"
+            :icon="stat.icon"
+          />
       </div>
-    <section class=" flex justify-between">
-      <EchartsChart class=" w-[48%]"></EchartsChart>
-      <EchartsToro class="w-[48%]" ></EchartsToro>
-    </section>
-    <section class=" flex w-full gap-6">
-    <Table class="w-full borde pt-6"></Table>
-    <Calendar></Calendar>
+      <section class=" flex justify-between">
+        <EchartsChart class=" w-[48%]"></EchartsChart>
+        <EchartsToro class="w-[48%]" ></EchartsToro>
+      </section>
+      <section class=" flex w-full gap-6">
+        <Table class="w-full borde pt-6"></Table>
+        <Calendar></Calendar>
 
-  </section>
+      </section>
 
     </section>
     
-  </template>
+</template>
   
-  <script setup>
-import Table from '~/components/tables/Table.vue';
+<script setup>
+  import Table from '~/components/tables/Table.vue';
+  definePageMeta({
+    middleware:'auth',
+  });
+
 
   
   const stats = ref([

@@ -41,6 +41,9 @@
   </template>
   
   <script setup>
+   definePageMeta({
+    middleware:'auth',
+  });
   import { ref, computed } from 'vue';
   
   // Datos de los elementos con más variedad en nombres, descripciones y estados

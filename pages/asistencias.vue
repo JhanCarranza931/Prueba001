@@ -43,7 +43,9 @@
   
   <script setup>
   import { ref } from 'vue';
-  
+  definePageMeta({
+    middleware:'auth',
+  });
   const employees = ref([
     {
       id: 1,
