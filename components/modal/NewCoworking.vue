@@ -73,7 +73,7 @@
 </template>
 
 <script setup>
-import { useUserStore } from '~/stores/userStore';
+import { useUserStore } from '../../stores/userStore';
 
 const isModalOpen = ref(false);
 const userStore = useUserStore();
@@ -103,7 +103,7 @@ const submitForm = async () => {
       telefono: ''
     };
     
-    isModalOpen.value = false; // Cerrar el modal después de enviar
+    isModalOpen.value = false;
   } catch (error) {
     console.error('Error al enviar el formulario:', error);
   }

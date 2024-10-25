@@ -20,4 +20,11 @@ export default defineNuxtConfig({
   build: {
     transpile: ['echarts', 'zrender', 'tslib'],
   },
+  vite: {
+    resolve: {
+      alias: {
+        '.prisma/client/index-browser': './node_modules/.prisma/client/index-browser.js',
+      },
+    },
+  },
 });

@@ -24,7 +24,7 @@ export default defineEventHandler(async (event) =>{
         } catch (error) {
             return {
                 statusCode: 500,
-                body: { message: 'Error deleting user', error: error.message },
+                body: { message: 'Error deleting user' },
               };
         }
 
