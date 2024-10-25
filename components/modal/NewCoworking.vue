@@ -1,8 +1,8 @@
 <template>
-  <div class="bg-gray-100 flex items-center justify-center">
+  <div class="  flex items-center justify-end p-6">
     <button
       @click="isModalOpen = true"
-      class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300"
+      class="px-20 py-2 bg-[#00DC82] text-white rounded hover:bg-[#00C062] focus:outline-none focus:ring-2  focus:ring-opacity-50 transition duration-300"
     >
       Agregar
     </button>
@@ -17,7 +17,7 @@
     >
       <div v-if="isModalOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <div class="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
-          <div class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75" aria-hidden="true" @click="isModalOpen = false"></div>
+          <div class="fixed bg-gray-100 inset-0 transition-opacity  bg-opacity-75" aria-hidden="true" @click="isModalOpen = false"></div>
 
           <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
 
@@ -52,7 +52,7 @@
               <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                 <button
                   type="submit"
-                  class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-500 text-base font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
+                  class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-[#00DC82] text-base font-medium text-white hover:bg-[#00C062] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
                 >
                   Aceptar
                 </button>

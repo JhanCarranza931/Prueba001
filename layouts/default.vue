@@ -1,7 +1,7 @@
 <template>
         <Sidebar ></Sidebar>
         <main class="w-full">
-        <nav class="flex justify-between w-full h-[70px]  items-center pr-6 pl-6 border">
+        <nav class="flex justify-between w-full h-[70px]  items-center pr-6 pl-6 border-b">
                 <h3 class=" capitalize ">{{ routerName }}</h3>
                 <div class="flex gap-6 items-center">
                         <div>

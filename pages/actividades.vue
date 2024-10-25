@@ -1,6 +1,8 @@
 <template>
+  
     <section>
-      <div class="flex justify-between py-6 px-6">
+      
+      <div class="flex justify-between py-6 px-6 border-b mb-6">
         <input type="date" class="borde p-2 w-[226px]" />
         <input
           type="text"
@@ -15,16 +17,23 @@
           <option value="Pendiente">Pendiente</option>
         </select>
       </div>
+      
       <div class="flex flex-wrap px-6 gap-6 w-full">
+        
         <div
           v-for="(item, index) in filteredItems"
           :key="index"
-          class="flex flex-col p-6 gap-4 borde flex-1 min-w-[340px] max-w-[420px]"
+          class="flex flex-col p-6 gap-3 borde flex-1 min-w-[340px] max-w-[420px]"
         >
-          <h2 class="text-2xl font-semibold txtcolor">{{ item.name }}</h2>
-          <p class="text-gray-400">{{ item.description }}</p>
-          <div>
-            <span
+        <div class="flex justify-between items-center border-b pb-2">
+          <div class="flex items-center">
+              <img class="h-8 max-w-8 rounded-full mr-4" :src="'https://i.pinimg.com/474x/31/ec/2c/31ec2ce212492e600b8de27f38846ed7.jpg'" :alt="free">
+              <div>
+                <div class="font-medium ">{{ item.name }}</div>
+                <div class="text-gray-500 text-xs">Ing. Software</div>
+              </div>
+          </div>
+          <span
               class="rounded-full px-3 py-1 font-semibold text-[13.33px]"
               :class="{
                 'bg-[#FFF1C1] text-[#E9AB00]': item.state === 'En progreso',
@@ -32,8 +41,15 @@
                 'bg-[#FFD3D3] text-[#FF3300]': item.state === 'Pendiente'
               }"
             >
-              {{ item.state }}
+              • {{ item.state }}
             </span>
+
+        </div>
+        <span class=" text-sm text-[#2E875A] font-bold">Actividades</span>
+        
+          <p class=" text-[13.33px]">{{ item.description }}</p>
+          <div>
+            
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 export default defineNuxtRouteMiddleware(() => {
-// const user = useState('user');
-// if(!user.value){
-//     return navigateTo('/');
-// }
-console.log('esta')
+const user = useState('user');
+if(!user.value){
+    return navigateTo('/');
+}
+
 })
