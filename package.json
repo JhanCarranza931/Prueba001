@@ -17,8 +17,13 @@
     "@nuxtjs/tailwindcss": "^6.12.1",
     "@pinia/nuxt": "^0.5.5",
     "@prisma/nuxt": "^0.0.35",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "echarts": "^5.5.1",
+    "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0",
     "nuxt": "^3.13.0",
+    "nuxt-auth-utils": "^0.5.0",
     "vue": "latest",
     "vue-echarts": "^7.0.3",
     "vue-router": "latest"

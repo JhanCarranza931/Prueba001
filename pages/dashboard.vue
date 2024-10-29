@@ -25,9 +25,7 @@
   
 <script setup>
   import Table from '~/components/tables/Table.vue';
-  definePageMeta({
-    middleware:'auth',
-  });
+
 
 
   

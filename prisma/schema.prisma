@@ -24,7 +24,7 @@ model Usuario {
   nombre    String
   apellido  String
   carrera   String?
-  correo    String
+  correo    String @unique
   password  String
   telefono  String? 
 

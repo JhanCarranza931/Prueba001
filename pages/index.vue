@@ -9,6 +9,9 @@
 
 <script setup >
 definePageMeta({
+    middleware:'auth'
+})
+definePageMeta({
     layout : false
 })
 

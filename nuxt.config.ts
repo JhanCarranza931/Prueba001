@@ -1,4 +1,3 @@
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
@@ -10,6 +9,7 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@prisma/nuxt',
     '@pinia/nuxt',
+    'nuxt-auth-utils',
   ],
   prisma:{
     installStudio:false
