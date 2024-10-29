@@ -27,7 +27,7 @@
         >
         <div class="flex justify-between items-center border-b pb-2">
           <div class="flex items-center">
-              <img class="h-8 max-w-8 rounded-full mr-4" :src="'https://i.pinimg.com/474x/31/ec/2c/31ec2ce212492e600b8de27f38846ed7.jpg'" :alt="free">
+              <img class="h-8 max-w-8 rounded-full mr-4" :src="'https://i.pinimg.com/474x/31/ec/2c/31ec2ce212492e600b8de27f38846ed7.jpg'" alt="free">
               <div>
                 <div class="font-medium ">{{ item.name }}</div>
                 <div class="text-gray-500 text-xs">Ing. Software</div>

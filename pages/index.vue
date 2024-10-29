@@ -9,11 +9,12 @@
 
 <script setup >
 definePageMeta({
-    middleware:'auth'
+    middleware:'auth',
+    layout:false
 })
-definePageMeta({
-    layout : false
-})
+
+    
+
 
 
 </script>

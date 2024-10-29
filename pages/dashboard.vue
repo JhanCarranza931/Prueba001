@@ -1,5 +1,5 @@
 <template>
-    <section class="container_stats mx-auto px-4 py-10 flex flex-col gap-10">
+    <section v-if="rol === 2" class="container_stats mx-auto px-4 py-10 flex flex-col gap-10">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <StatsCard 
             v-for="stat in stats" 
@@ -20,11 +20,17 @@
       </section>
 
     </section>
+    <div v-else-if="rol===3">hoal que tal como va todo  </div>
     
 </template>
   
 <script setup>
   import Table from '~/components/tables/Table.vue';
+  definePageMeta({
+    middleware: 'auth'
+  })
+  const rol = parseInt(localStorage.getItem("rol"), 10)
+  console.log('rol',rol)
 
 
 

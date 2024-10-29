@@ -46,6 +46,7 @@ const signIn = async () => {
     if (data.statusCode === 200) {
       // Establecer el token en local storage
       localStorage.setItem("authToken", data.body.token);
+      localStorage.setItem("rol",data.body.user.rol)
       alert("Login is successful");
       
       // Redirigir después de iniciar sesión
