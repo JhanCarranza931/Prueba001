@@ -54,7 +54,7 @@ model UsuarioRoles {
 model Actividades {
   id         Int   @id @default(autoincrement())  
   actividad  String
-  fecha      DateTime
+  fecha      DateTime @default(now())
   usuario_id Int?
   estado_id  Int?
 

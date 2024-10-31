@@ -34,7 +34,7 @@ export default defineEventHandler(async (event) => {
   );
   const users = {
     rol : user.roles[0].rol_id,
-    us : user.roles[0].usuario_id
+    us : user
   };
  
 

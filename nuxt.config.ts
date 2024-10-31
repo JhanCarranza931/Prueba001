@@ -10,9 +10,19 @@ export default defineNuxtConfig({
     '@prisma/nuxt',
     '@pinia/nuxt',
     'nuxt-auth-utils',
+    'pinia-plugin-persistedstate/nuxt',
   ],
   prisma:{
     installStudio:false
+  },
+  googleFonts:{
+    families:{
+        Outfit:true
+    }
+
+  },
+  icon:{
+    size: '24px'
   },
 
   css: ['/assets/main.css'],

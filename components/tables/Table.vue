@@ -1,7 +1,23 @@
+<script setup>
+
+ const actividadesStore = new useActividadStore()
+
+ const actividades = computed(()=> actividadesStore.actividades)
+
+ const fechActividades = async ()=>{
+    await actividadesStore.fetchActividades();
+ }
+ onMounted(fechActividades)
+ console.log('Actividades: ',actividades)
+</script>
+
 <template>
     <div>
     <div class="flex items-center gap-x-3">
         <h2 class="text-lg font-medium text-gray-800 ml-6">Actividades</h2>
+        <h1 v-for=" actividad in actividades">
+            {{ actividad.usuario.nombre+' '+actividad.usuario.apellido}}
+        </h1>
 
 
     </div>

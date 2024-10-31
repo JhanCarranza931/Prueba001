@@ -1,5 +1,5 @@
 <template>
-    <section v-if="rol === 2" class="container_stats mx-auto px-4 py-10 flex flex-col gap-10">
+    <section v-if="isAdmin" class="container_stats mx-auto px-4 py-10 flex flex-col gap-10">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <StatsCard 
             v-for="stat in stats" 
@@ -14,27 +14,27 @@
         <EchartsToro class="w-[48%]" ></EchartsToro>
       </section>
       <section class=" flex w-full gap-6">
-        <Table class="w-full borde pt-6"></Table>
+        <TablesTable class="w-full borde pt-6"></TablesTable>
         <Calendar></Calendar>
 
       </section>
 
     </section>
-    <div v-else-if="rol===3">hoal que tal como va todo  </div>
+    <div v-else-if="isUser">Dashboard Usuario</div>
     
 </template>
   
 <script setup>
-  import Table from '~/components/tables/Table.vue';
+import { useSessionStore } from '~/stores/sessionStore';
+const  sessionStore = useSessionStore()
+const isAdmin = sessionStore.isAdmin;
+const isUser = sessionStore.isUser;
+
   definePageMeta({
     middleware: 'auth'
   })
-  const rol = parseInt(localStorage.getItem("rol"), 10)
-  console.log('rol',rol)
 
 
-
-  
   const stats = ref([
     { title: 'Total de empleados', value: 12, increase: 12, icon: 'tabler:align-box-bottom-right' },
     { title: 'Asistencia Promedio', value: '98%', increase: 12, icon: 'octicon:checklist-24' },

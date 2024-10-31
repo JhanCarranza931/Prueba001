@@ -9,8 +9,8 @@
         <h3 class="capitalize">{{ routerName }}</h3>
         <div class="flex gap-6 items-center">
           <div>
-            <h3 class="font-bold">Jhan Carranza</h3>
-            <p class="text-[13.33px]">jhancarranza@gmail.com</p>
+            <h3 class="font-bold">{{ user.nombre+' '+ user.apellido }}</h3>
+            <p class="text-[13.33px]">{{ user.correo }}</p>
           </div>
           <img
             src="https://pstangarana.com/wp-content/uploads/2023/09/t.webp"
@@ -26,6 +26,9 @@
 </template>
 
 <script setup>
+
+const sessionStorage  = new useSessionStore();
+const user = sessionStorage.us
 
 
 const isAuthenticated = ref(false);

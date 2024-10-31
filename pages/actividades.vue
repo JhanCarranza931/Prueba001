@@ -1,5 +1,5 @@
 <template>
-  
+  <template v-if="isAdmin">
     <section>
       
       <div class="flex justify-between py-6 px-6 border-b mb-6">
@@ -21,33 +21,33 @@
       <div class="flex flex-wrap px-6 gap-6 w-full">
         
         <div
-          v-for="(item, index) in filteredItems"
-          :key="index"
+          v-for="item in actividades"
+          :key="item.id"
           class="flex flex-col p-6 gap-3 borde flex-1 min-w-[340px] max-w-[420px]"
         >
         <div class="flex justify-between items-center border-b pb-2">
           <div class="flex items-center">
               <img class="h-8 max-w-8 rounded-full mr-4" :src="'https://i.pinimg.com/474x/31/ec/2c/31ec2ce212492e600b8de27f38846ed7.jpg'" alt="free">
               <div>
-                <div class="font-medium ">{{ item.name }}</div>
-                <div class="text-gray-500 text-xs">Ing. Software</div>
+                <div class="font-medium ">{{item.usuario.nombre+' '+item.usuario.apellido}}</div>
+                <div class="text-gray-500 text-xs">{{ item.usuario.carrera }}</div>
               </div>
           </div>
           <span
               class="rounded-full px-3 py-1 font-semibold text-[13.33px]"
               :class="{
-                'bg-[#FFF1C1] text-[#E9AB00]': item.state === 'En progreso',
-                'bg-[#E7FFDC] text-[#00AE34]': item.state === 'Completado',
-                'bg-[#FFD3D3] text-[#FF3300]': item.state === 'Pendiente'
+                'bg-[#FFF1C1] text-[#E9AB00]': item.estado.stado_actividad === 'En progreso',
+                'bg-[#E7FFDC] text-[#00AE34]': item.estado.stado_actividad === 'Completado',
+                'bg-[#FFD3D3] text-[#FF3300]': item.estado.stado_actividad === 'Pendiente'
               }"
             >
-              • {{ item.state }}
+              • {{ item.estado.stado_actividad }}
             </span>
 
         </div>
         <span class=" text-sm text-[#2E875A] font-bold">Actividades</span>
         
-          <p class=" text-[13.33px]">{{ item.description }}</p>
+          <p class=" text-[13.33px]">{{ item.actividad }}</p>
           <div>
             
           </div>
@@ -55,11 +55,33 @@
       </div>
     </section>
   </template>
+  <template v-else-if="isUser">
+  <UsuarioActividad></UsuarioActividad>
+  </template>
+  
+    
+  </template>
   
   <script setup>
+import { useSessionStore } from '~/stores/sessionStore';
+const  sessionStore = useSessionStore()
+const isAdmin = sessionStore.isAdmin;
+const isUser = sessionStore.isUser;
    definePageMeta({
     middleware:'auth',
   });
+
+
+ const actividadesStore = new useActividadStore()
+
+ const actividades = computed(()=> actividadesStore.actividades)
+
+ const fechActividades = async ()=>{
+    await actividadesStore.fetchActividades();
+ }
+ onMounted(fechActividades)
+
+
   import { ref, computed } from 'vue';
   
   // Datos de los elementos con más variedad en nombres, descripciones y estados
@@ -84,9 +106,9 @@
   const selectedState = ref('');
   
   const filteredItems = computed(() => {
-    return items.value.filter(item => {
-      const matchesName = item.name.toLowerCase().includes(searchName.value.toLowerCase());
-      const matchesState = selectedState.value ? item.state === selectedState.value : true;
+    return items.value.filter(actividades => {
+      const matchesName = actividades.usuario.nombre.toLowerCase().includes(searchName.value.toLowerCase());
+      const matchesState = selectedState.value ? actividades.estado.stado_actividad === selectedState.value : true;
       return matchesName && matchesState;
     });
   });

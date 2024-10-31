@@ -1,4 +1,5 @@
 <template>
+  <template v-if="isAdmin">
     <div class="p-6 ">
       <table class="min-w-full bg-white">
         <thead>
@@ -39,10 +40,20 @@
         </tbody>
       </table>
     </div>
+  
+  </template>
+  <template v-else-if="isUser">
+    <UsuarioAsistencias></UsuarioAsistencias>
+  </template>
+   
   </template>
   
   <script setup>
   import { ref } from 'vue';
+  import { useSessionStore } from '~/stores/sessionStore';
+const  sessionStore = useSessionStore()
+const isAdmin = sessionStore.isAdmin;
+const isUser = sessionStore.isUser;
   definePageMeta({
     middleware:'auth',
   });

@@ -18,7 +18,8 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
-
+import { useSessionStore } from '~/stores/sessionStore';
+const sessionStore = useSessionStore();
 const router = useRouter();
 
 const auth = ref({
@@ -46,11 +47,19 @@ const signIn = async () => {
     if (data.statusCode === 200) {
       // Establecer el token en local storage
       localStorage.setItem("authToken", data.body.token);
-      localStorage.setItem("rol",data.body.user.rol)
-      alert("Login is successful");
+      const userData = {
+        token : data.body.token,
+        role: parseInt(data.body.user.rol,10),
+        us: data.body.user.us
+      }
+      console.log(parseInt(data.body.user.rol,10))
+      console.log('Esto es la data que deberia mostrar: ',data.body.user.us)
+      sessionStore.setUser(userData);
+      // localStorage.setItem("rol",data.body.user.rol)
+      // alert("Login is successful");
       
-      // Redirigir después de iniciar sesión
-      router.push('/dashboard'); // Cambiamos navigateTo por router.push
+    
+      router.push('/dashboard');
     } else {
       console.log("Login failed:", data.message);
       alert("Username or password is invalid");
