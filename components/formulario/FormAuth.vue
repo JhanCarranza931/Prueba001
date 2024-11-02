@@ -43,19 +43,24 @@ const signIn = async () => {
     });
 
     const data = await response.json();
-    console.log(data.body);
+    console.log(data.body.user.us.value);
     if (data.statusCode === 200) {
       // Establecer el token en local storage
       localStorage.setItem("authToken", data.body.token);
+      // localStorage.setItem("rol",parseInt(data.body.user.rol,10))
       const userData = {
         token : data.body.token,
         role: parseInt(data.body.user.rol,10),
         us: data.body.user.us
       }
-      console.log(parseInt(data.body.user.rol,10))
+      // const userCookie = useCookie('user-auth', { maxAge: 60 * 60 * 24 * 7 }); // 7 días de duración
+      // userCookie.value = JSON.stringify(userData); 
+      // console.log(userCookie.value)
+ 
+      console.log(userData)
       console.log('Esto es la data que deberia mostrar: ',data.body.user.us)
       sessionStore.setUser(userData);
-      // localStorage.setItem("rol",data.body.user.rol)
+ 
       // alert("Login is successful");
       
     

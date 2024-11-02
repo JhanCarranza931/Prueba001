@@ -7,6 +7,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     console.log('aaaaaaaaaaaa',rol)
     if (token) {
       try {
+        
         const decodedToken = jwtDecode(token);
         const currentTime = Date.now() / 1000;
 

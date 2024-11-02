@@ -9,7 +9,7 @@
         <h3 class="capitalize">{{ routerName }}</h3>
         <div class="flex gap-6 items-center">
           <div>
-            <h3 class="font-bold">{{ user.nombre+' '+ user.apellido }}</h3>
+            <h3 class="font-bold">{{ user.nombre +' '+ user.apellido }}</h3>
             <p class="text-[13.33px]">{{ user.correo }}</p>
           </div>
           <img
@@ -26,21 +26,24 @@
 </template>
 
 <script setup>
-
-const sessionStorage  = new useSessionStore();
-const user = sessionStorage.us
-
-
-const isAuthenticated = ref(false);
-const isLoading = ref(true);
 const route = useRoute();
 const routerName = ref(route.name);
+const isLoading = ref(true);
 
-onMounted(() => {
-  const token = localStorage.getItem("authToken");
-  isAuthenticated.value = !!token;
+const {isAuthenticated,user} = useAuth()
+
+console.log(isAuthenticated)
+onMounted(()=>{
+  if(isAuthenticated){
   isLoading.value = false;
-});
+  
+
+}
+  
+})
+
+
+
 
 watch(
   () => route.name,

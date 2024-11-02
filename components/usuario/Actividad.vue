@@ -1,8 +1,9 @@
 <script setup>
  const actividadesStore = new useActividadStore()
- const sessionStore = new useSessionStore();
 
- console.log('Losss',sessionStore.us)
+ const {user } =  useAuth();
+
+
 
 const actividades = computed(()=> actividadesStore.actividades)
 
@@ -14,7 +15,7 @@ const fechActividades = async ()=>{
 
 const data = ref({
   actividad: '',
-  id_user : sessionStore.us.id,
+  id_user : user.value.id,
   id_estado:1
 })
 
@@ -41,7 +42,7 @@ onMounted(fechActividades)
             <img src="/assets/img/actividades-hero.webp" width="281px" alt="Actividades">
           </div>
       </header>
-  
+
       <!-- Registro de actividadd -->
       <section class="flex flex-col gap-1 w-full">
         <h2 class="text-2xl font-semibold text-[#3B5649]  ">Registra tu Actividad</h2>
