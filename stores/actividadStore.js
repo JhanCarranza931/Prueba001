@@ -4,6 +4,7 @@ import { defineStore } from 'pinia';
 export const useActividadStore = defineStore('actividades', {
   state: () => ({
     actividades: [],
+    userActividad:[],
   }),
   actions: {
     async fetchActividades() {
@@ -16,8 +17,16 @@ export const useActividadStore = defineStore('actividades', {
         body: JSON.stringify(actividades),
       });
       // await this.fetchUsers(); 
+      await this.fechActividadesForId(response.id)
       return response;
+      
     },
+    async fechActividadesForId(id){
+      this.userActividad = await $fetch(`/api/actividad/${id}`)
+      console.log(this.userActividad)
+      
+    }
+    
 
     // async delete(userId){
     //   await $fetch(`/api/usuarios/${userId}`,{

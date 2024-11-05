@@ -19,6 +19,7 @@ export default defineEventHandler(async (event)=>{
         });
         return {
             status: 201,
+            id: NewActividad.usuario_id,
             usuario: NewActividad,
             message: 'Actividad agregada exitosamente'
           };

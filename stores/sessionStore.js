@@ -14,9 +14,13 @@ export const useSessionStore = defineStore('session', {
   actions: {
     setUser(data) {
       console.log('Dato', data)
-      this.role = this.encrypt(data.role.toString()); // Encriptamos el rol como string
-      this.token = this.encrypt(data.token);
-      this.us = this.encrypt(JSON.stringify(data.us)); // Encriptamos 'us' como string JSON
+      if (data && data.role && data.token && data.us) {
+        this.role = this.encrypt(data.role.toString());
+        this.token = this.encrypt(data.token);
+        this.us = this.encrypt(JSON.stringify(data.us));
+    } else {
+        console.error("Datos incompletos o inválidos en setUser:", data);
+    }
     },
     clearUser() {
       this.role = null;
@@ -29,10 +33,26 @@ export const useSessionStore = defineStore('session', {
       return CryptoJS.AES.encrypt(data, SECRET_KEY).toString();
     },
     decrypt(encryptedData) {
-      const bytes = CryptoJS.AES.decrypt(encryptedData, SECRET_KEY);
-      console.log('datos ',bytes.toString(CryptoJS.enc.Utf8))
-      return bytes.toString(CryptoJS.enc.Utf8);
-    }
+      if (!encryptedData) {
+          console.error("Datos encriptados ausentes o inválidos en decrypt.");
+          return null;
+      }
+  
+      try {
+          const bytes = CryptoJS.AES.decrypt(encryptedData, SECRET_KEY);
+          const decryptedData = bytes.toString(CryptoJS.enc.Utf8);
+  
+          if (!decryptedData) {
+              throw new Error("La des-encriptación devolvió un valor vacío.");
+          }
+  
+          return decryptedData;
+      } catch (error) {
+          console.error("Error al desencriptar los datos:", error);
+          return null;
+      }
+  }
+  
   },
 
   getters: {
@@ -43,28 +63,39 @@ export const useSessionStore = defineStore('session', {
 
   persist: {
     storage: {
-      getItem: (key) => {
-        const encryptedData = localStorage.getItem(key);
-        if (!encryptedData) return null;
+        getItem: (key) => {
+            if (import.meta.client) {
+                const encryptedData = localStorage.getItem(key);
+                if (!encryptedData) {
+                    return null;
+                }
 
-        // Desencriptar y convertir a objeto JSON
-        try {
-          const decryptedData = CryptoJS.AES.decrypt(encryptedData, SECRET_KEY).toString(CryptoJS.enc.Utf8);
-          return JSON.parse(decryptedData);
-        } catch (error) {
-          console.error("Error al desencriptar los datos de sesión:", error);
-          return null;
-        }
-      },
-      setItem: (key, value) => {
-        try {
-          const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(value), SECRET_KEY).toString();
-          localStorage.setItem(key, encryptedData);
-        } catch (error) {
-          console.error("Error al encriptar los datos de sesión:", error);
-        }
-      },
-      removeItem: (key) => localStorage.removeItem(key),
+                try {
+                    const decryptedData = CryptoJS.AES.decrypt(encryptedData, SECRET_KEY).toString(CryptoJS.enc.Utf8);
+                    return JSON.parse(decryptedData);
+                } catch (error) {
+                    console.error("Error al desencriptar los datos de sesión:", error);
+                    return null;
+                }
+            }
+            return null;
+        },
+        setItem: (key, value) => {
+            if (import.meta.client) {
+                try {
+                    const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(value), SECRET_KEY).toString();
+                    localStorage.setItem(key, encryptedData);
+                } catch (error) {
+                    console.error("Error al encriptar los datos de sesión:", error);
+                }
+            }
+        },
+        removeItem: (key) => {
+            if (import.meta.client) {
+                localStorage.removeItem(key);
+            }
+        },
     },
-  },
+},
+
 });

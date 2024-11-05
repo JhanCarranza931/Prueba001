@@ -3,8 +3,6 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   // Verificar si estamos en el cliente
   if (import.meta.client) {
     const token = localStorage.getItem('authToken');
-    const rol = localStorage.getItem('rol')
-    console.log('aaaaaaaaaaaa',rol)
     if (token) {
       try {
         
@@ -23,9 +21,8 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
         }
 
       } catch (error) {
-        // Manejar el error de decodificación del token
         localStorage.removeItem('authToken');
-        return navigateTo('/'); // Redirigir a login si hay un error
+        return navigateTo('/');
 
       }
     } else if (to.name !== 'index') {

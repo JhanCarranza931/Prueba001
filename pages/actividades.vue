@@ -27,7 +27,7 @@
         >
         <div class="flex justify-between items-center border-b pb-2">
           <div class="flex items-center">
-              <img class="h-8 max-w-8 rounded-full mr-4" :src="'https://i.pinimg.com/474x/31/ec/2c/31ec2ce212492e600b8de27f38846ed7.jpg'" alt="free">
+              <img class="h-8 max-w-8 rounded-full mr-4" :src="'https://png.pngtree.com/png-clipart/20231019/original/pngtree-user-profile-avatar-png-image_13369988.png'" alt="free">
               <div>
                 <div class="font-medium ">{{item.usuario.nombre+' '+item.usuario.apellido}}</div>
                 <div class="text-gray-500 text-xs">{{ item.usuario.carrera }}</div>
@@ -76,32 +76,16 @@ const isUser = sessionStore.isUser;
 
  const actividades = computed(()=> actividadesStore.actividades)
 
- const fechActividades = async ()=>{
+  const fechActividades = async ()=>{
     await actividadesStore.fetchActividades();
  }
  onMounted(fechActividades)
 
 
+
+
   import { ref, computed } from 'vue';
   
-  // Datos de los elementos con más variedad en nombres, descripciones y estados
-  const items = ref([
-    { name: 'Jhan Carranza', description: 'Crear un prototipo de aplicación', state: 'En progreso' },
-    { name: 'Antony Álvarez', description: 'Desarrollar la interfaz de usuario', state: 'Completado' },
-    { name: 'Jack Troncos', description: 'Optimizar el rendimiento del sitio', state: 'En progreso' },
-    { name: 'Brooklyn Simmons', description: 'Escribir documentación técnica', state: 'En progreso' },
-    { name: 'Ronald Richards', description: 'Realizar pruebas de usabilidad', state: 'Pendiente' },
-    { name: 'Theresa Webb', description: 'Implementar el diseño responsivo', state: 'En progreso' },
-    { name: 'David Smith', description: 'Configuración de la base de datos', state: 'Pendiente' },
-    { name: 'Jane Cooper', description: 'Revisar el código y hacer sugerencias', state: 'Completado' },
-    { name: 'Cody Fisher', description: 'Crear un plan de lanzamiento', state: 'En progreso' },
-    { name: 'Leslie Alexander', description: 'Actualizar el contenido del sitio web', state: 'Completado' },
-    { name: 'Mark Johnson', description: 'Recopilar feedback de los usuarios', state: 'Pendiente' },
-    { name: 'Emma Brown', description: 'Diseñar una nueva funcionalidad', state: 'En progreso' },
-    { name: 'Sofia Davis', description: 'Implementar pruebas automatizadas', state: 'Completado' },
-  ]);
-  
-
   const searchName = ref('');
   const selectedState = ref('');
   

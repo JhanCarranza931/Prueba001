@@ -1,17 +1,16 @@
-<template>
-    <section class="flex items-center h-screen w-[1280px] m-auto justify-between">
-        <img src="../assets/img/auth.webp" alt="auth" class=" w-[655px]">
-        <div>
-            <FormularioFormAuth></FormularioFormAuth>
-        </div>
-    </section>
+<template> 
 </template>
 
 <script setup >
+
+
+
 definePageMeta({
     middleware:'auth',
-    layout:false
-})
+    layout: 'custom'
+  
+});
+
 
     
 

@@ -2,9 +2,9 @@
   <div v-if="isLoading">
     <p>Loading...</p>
   </div>
-  <div  v-if="isAuthenticated"  class="w-full flex">
-    <Sidebar />
-    <main class="w-full">
+  <div v-else class="w-full flex">
+    <Sidebar v-if="isAuthenticated" />
+    <main v-show="isAuthenticated" class="w-full">
       <nav class="flex justify-between w-full h-[70px] items-center pr-6 pl-6 border-b">
         <h3 class="capitalize">{{ routerName }}</h3>
         <div class="flex gap-6 items-center">
@@ -19,11 +19,11 @@
           />
         </div>
       </nav>
-      <NuxtPage/>
+      <NuxtPage />
     </main>
   </div>
-
 </template>
+
 
 <script setup>
 const route = useRoute();
@@ -32,7 +32,7 @@ const isLoading = ref(true);
 
 const {isAuthenticated,user} = useAuth()
 
-console.log(isAuthenticated)
+
 onMounted(()=>{
   if(isAuthenticated){
   isLoading.value = false;

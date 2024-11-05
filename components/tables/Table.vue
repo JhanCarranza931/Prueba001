@@ -15,9 +15,7 @@
     <div>
     <div class="flex items-center gap-x-3">
         <h2 class="text-lg font-medium text-gray-800 ml-6">Actividades</h2>
-        <h1 v-for=" actividad in actividades">
-            {{ actividad.usuario.nombre+' '+actividad.usuario.apellido}}
-        </h1>
+
 
 
     </div>
@@ -65,7 +63,7 @@
                                     <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 ">
                                         <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
 
-                                        <h2 class="text-sm font-normal text-emerald-500">Active</h2>
+                                        <h2 class="text-sm font-normal text-emerald-500">Completado</h2>
                                     </div>
                                 </td>
                                 <td class="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">Optimizar el rendimiento del sitio</td>
@@ -92,7 +90,7 @@
                                     <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 ">
                                         <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
 
-                                        <h2 class="text-sm font-normal text-emerald-500">Active</h2>
+                                        <h2 class="text-sm font-normal text-emerald-500">Completado</h2>
                                     </div>
                                 </td>
                                 <td class="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">Optimizar el rendimiento del sitio</td>
@@ -119,7 +117,7 @@
                                     <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 ">
                                         <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
 
-                                        <h2 class="text-sm font-normal text-emerald-500">Active</h2>
+                                        <h2 class="text-sm font-normal text-emerald-500">Completado</h2>
                                     </div>
                                 </td>
                                 <td class="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">Diseño UI web </td>
@@ -145,7 +143,7 @@
                                     <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 ">
                                         <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
 
-                                        <h2 class="text-sm font-normal text-emerald-500">Active</h2>
+                                        <h2 class="text-sm font-normal text-emerald-500">Completado</h2>
                                     </div>
                                 </td>
                                 <td class="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">Diseño de la base de datos</td>
