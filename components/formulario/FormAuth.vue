@@ -20,7 +20,8 @@
           <span v-else>Ingresar</span>
         </button>
     </form>
-    <p class=" text-sm text-[#7C7272] text-center">Ingresa como usuario o como administrador al panel de control y administre sus asistencias y actividades</p>
+    <p class=" text-sm text-[#7C7272] text-center">O</p>
+    <NuxtLink to="/asistencia" class="text-sm text-center text-[#36b62a] cursor-pointer  underline">Registra tu asistencia</NuxtLink>
 </div>
 </template>
 

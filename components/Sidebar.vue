@@ -5,13 +5,13 @@
             <Menu></Menu>
         </div>
         
-        <Links :link="logout"></Links>
+        <button @click="log" class="group hover:bg-[#ffaeae] hover:text-[#003721] rounded-lg flex cursor-pointer   p-4 items-center text-[#1F1F22]"><Icon class=" mr-[10px]" name="hugeicons:logout-02"/> Salir</button>
     </aside>
 </template>
 <script setup>
-    const logout = {
-        Icon:"material-symbols-light:logout",
-        Value:"Logout",
-        To:"/",
+
+    const log = ()=>{
+        localStorage.removeItem('authToken');
+        navigateTo('/')
     }
 </script>
