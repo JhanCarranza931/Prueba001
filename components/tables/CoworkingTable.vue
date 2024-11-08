@@ -4,12 +4,9 @@ import { useUserStore } from '@/stores/userStore';
 const userStore = useUserStore();
 
 const coworking = computed(() => userStore.users);
-
-const fetchUsers = async () => {
-  await userStore.fetchUsers();
-};
-onMounted(fetchUsers);
-
+onMounted(async ()=>{
+  userStore.fetchUsers();
+})
 const handleDelete = async (userId) => {
   await userStore.delete(userId)
 

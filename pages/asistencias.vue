@@ -4,29 +4,29 @@
       <table class="min-w-full bg-white">
         <thead>
           <tr class="border-b">
-            <th class="text-left py-3 px-4 font-semibold text-sm">Nombres</th>
-            <th class="text-left py-3 px-4 font-semibold text-sm">Hora Entrada</th>
-            <th class="text-left py-3 px-4 font-semibold text-sm">Hora Salida</th>
-            <th class="text-left py-3 px-4 font-semibold text-sm">Asistencia</th>
-            <th class="text-left py-3 px-4 font-semibold text-sm">Acción</th>
+            <th class="text-left py-3 px-4  text-sm">Nombres</th>
+            <th class="text-left py-3 px-4  text-sm">Hora Entrada</th>
+            <th class="text-left py-3 px-4  text-sm">Hora Salida</th>
+            <th class="text-left py-3 px-4  text-sm">Asistencia</th>
+            <th class="text-left py-3 px-4  text-sm">Acción</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(employee, index) in employees" :key="employee.id" :class="{ 'bg-gray-50': index % 2 === 0 }">
+          <tr v-for="(asis,index) in asistencias" :key="asis.id" :class="{ 'bg-gray-50': index % 2 === 0 }">
             <td class="py-3 px-4">
               <div class="flex items-center">
-                <img :src="employee.avatar" :alt="employee.name" class="w-10 h-10 rounded-full mr-4">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/800px-User_icon_2.svg.png" class="w-10 h-10 rounded-full mr-4">
                 <div>
-                  <p class="font-semibold text-sm">{{ employee.name }}</p>
-                  <p class="text-xs text-gray-600">{{ employee.position }}</p>
+                  <p class="font-semibold text-sm">{{ asis.usuario.nombre+' '+asis.usuario.apellido }}</p>
+                  <p class="text-xs text-gray-600">{{ asis.usuario.carrera }}</p>
                 </div>
               </div>
             </td>
-            <td class="py-3 px-4 text-sm">{{ employee.entryTime }}</td>
-            <td class="py-3 px-4 text-sm">{{ employee.exitTime }}</td>
+            <td class="py-3 px-4 text-sm">{{ formatDate(asis.hora_entrada) }}</td>
+            <td class="py-3 px-4 text-sm">{{ formatDate(asis.hora_salida)  }}</td>
             <td class="py-3 px-4">
-              <span :class="getStatusClass(employee.status)" class="px-2 py-1 rounded-full text-xs font-semibold">
-                {{ employee.status }}
+              <span  class="px-2 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
+                {{ asis.estadoAsis.stado_asis}}
               </span>
             </td>
             <td class="py-3 px-4">
@@ -49,63 +49,32 @@
   </template>
   
   <script setup>
-  import { ref } from 'vue';
   import { useSessionStore } from '~/stores/sessionStore';
-const  sessionStore = useSessionStore()
-const isAdmin = sessionStore.isAdmin;
-const isUser = sessionStore.isUser;
+  const  sessionStore = useSessionStore()
+  const isAdmin = sessionStore.isAdmin;
+  const isUser = sessionStore.isUser;
   definePageMeta({
     middleware:'auth',
   });
-  const employees = ref([
-    {
-      id: 1,
-      name: 'Nilser Villanueva',
-      position: 'Diseño gráfico',
-      avatar: 'https://pstangarana.com/wp-content/uploads/2024/07/BECADO-g-SN-1-1.jpg',
-      entryTime: '12/10/2025 08:50',
-      exitTime: '12/10/2025 19:05',
-      status: 'Permiso'
-    },
-    {
-      id: 2,
-      name: 'Jhan Carranza',
-      position: 'Ing. Software',
-      avatar: 'https://pstangarana.com/wp-content/uploads/2023/09/jh.webp',
-      entryTime: '12/10/2025 08:56',
-      exitTime: '12/10/2025 18:40',
-      status: 'Presente'
-    },
-    {
-      id: 3,
-      name: 'Jack Troncos',
-      position: 'Ing. Software',
-      avatar: 'https://pstangarana.com/wp-content/uploads/2024/07/BECADO-g-SN-3.jpg',
-      entryTime: '12/10/2025 08:57',
-      exitTime: '12/10/2025 16:05',
-      status: 'Ausente'
-    },
-    {
-      id: 4,
-      name: 'Jack Troncos',
-      position: 'Ing. Software',
-      avatar: 'https://pstangarana.com/wp-content/uploads/2024/07/BECADO-g-SN-3.jpg',
-      entryTime: '12/10/2025 08:57',
-      exitTime: '12/10/2025 16:05',
-      status: 'Ausente'
+
+  const asisStore = useAsistenciasStore();
+  const asistencias = computed( () => asisStore.asistencias)
+  console.log(asistencias)
+
+  onMounted(async () => {
+        asisStore.fetchAsistencia();
+  })
+
+  function formatDate(dateString) {
+    if (!dateString) return '';
+      const date = new Date(dateString);
+      return date.toLocaleString('es-ES', {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12:true,
+      });
     }
-  ]);
-  
-  const getStatusClass = (status) => {
-    switch (status) {
-      case 'Permiso':
-        return 'bg-blue-100 text-blue-800';
-      case 'Presente':
-        return 'bg-green-100 text-green-800';
-      case 'Ausente':
-        return 'bg-red-100 text-red-800';
-      default:
-        return 'bg-gray-100 text-gray-800';
-    }
-  };
   </script>

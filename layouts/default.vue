@@ -13,7 +13,7 @@
             <p class="text-[13.33px]">{{ user.correo }}</p>
           </div>
           <img
-            src="https://pstangarana.com/wp-content/uploads/2023/09/t.webp"
+            src="https://pstangarana.com/wp-content/uploads/2024/07/BECADO-g-SN-2.jpg"
             alt="Usuario"
             class="w-14 h-14 rounded-full"
           />

@@ -76,10 +76,9 @@ const isUser = sessionStore.isUser;
 
  const actividades = computed(()=> actividadesStore.actividades)
 
-  const fechActividades = async ()=>{
-    await actividadesStore.fetchActividades();
- }
- onMounted(fechActividades)
+ onMounted(async()=>{
+    actividadesStore.fetchActividades();
+ })
 
 
 

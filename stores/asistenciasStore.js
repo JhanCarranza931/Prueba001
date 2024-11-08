@@ -6,6 +6,11 @@ export const useAsistenciasStore = defineStore('asistencias', {
       }),
 
       actions:{
+        async fetchAsistencia(){
+          this.asistencias = await $fetch('/api/asistencia',{
+            method:'GET'
+          })
+        },
         async  addAsistencia(data) {
             const response = await $fetch('/api/asistencia',{
                 method:'POST',
@@ -13,7 +18,15 @@ export const useAsistenciasStore = defineStore('asistencias', {
             })
             return response
             
-          }
+          },
+
+        async aditAsistencia(data){
+          const response = await $fetch('/api/asistencia',{
+            method:'PUT',
+            body:JSON.stringify(data)
+          })
+          return response
+        }
       }
       
 })

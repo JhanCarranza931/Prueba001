@@ -40,7 +40,36 @@ console.log(data.value)
   isShowModal.value=true
  }
 
- 
+ function formatDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleString('es-ES', {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12:true,
+      });
+    }
+    //Formato Fecha
+//   function formatDateOnly(dateString) {
+//   const date = new Date(dateString);
+//   return date.toLocaleString('es-ES', {
+//     year: 'numeric',
+//     month: 'long',   
+//     day: '2-digit'
+//   });
+// }
+//Formato Hora
+// function formatTimeOnly(dateString) {
+//   const date = new Date(dateString);
+//   return date.toLocaleString('es-ES', {
+//     hour: '2-digit',
+//     minute: '2-digit',
+//     second: '2-digit',  
+//     hour12: false       
+//   });
+// }
 
 
 </script>
@@ -131,7 +160,7 @@ console.log(data.value)
               <button>Editar</button>
             </div>
             <p>{{ actividad.actividad }}</p>
-            <span>{{ actividad.fecha }}</span>
+            <span>{{ formatDate(actividad.fecha) }}</span>
             
           </article>
         </div>
