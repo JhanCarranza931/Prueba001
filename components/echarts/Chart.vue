@@ -34,46 +34,45 @@ use([
   TransformComponent
 ]);
 
-// Definir la opción del gráfico como una referencia reactiva
 const chartOptions = ref({
   title: {
     text: 'Datos de Asistencias',
-    left: 'center', // Alineación del título
+    left: 'center', 
     top: '20px'
   },
   xAxis: {
     type: 'category',
-    data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug','Sep','Oct','Nov','Dec'], // Categorías del eje X
+    data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug','Sep','Oct','Nov','Dec'], 
     axisLabel: {
-      rotate: 30 // Rote las etiquetas si es necesario
+      rotate: 30 
     }
   },
   yAxis: {
     type: 'value',
-    name: 'Cantidad' // Nombre del eje Y
+    name: 'Cantidad' 
   },
   series: [
     {
       name: 'Asistencias',
-      data: [120, 170, 150, 80, 70, 110, 130, 11,80, 70, 110, 130], // Datos del gráfico
+      data: [120, 170, 150, 80, 70, 110, 130, 11,80, 70, 110, 130],
       type: 'bar',
       itemStyle: {
         color: '#00DC82',
-        borderRadius: [4, 4, 0, 0] // Personalización del estilo de las barras
+        borderRadius: [4, 4, 0, 0] 
       }
     }
   ],
   tooltip: {
     trigger: 'axis',
     axisPointer: {
-      type: 'shadow' // Tipo de puntero para el tooltip
+      type: 'shadow' 
     }
   },
   grid: {
     left: '3%',
     right: '4%',
     bottom: '3%',
-    containLabel: true // Contener etiquetas dentro del área del gráfico
+    containLabel: true 
   }
 });
 </script>

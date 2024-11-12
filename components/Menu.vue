@@ -8,32 +8,32 @@
 </template>
 <script setup>
 const link = [{
-    Icon : "lets-icons:home-light",
+    Icon : "hugeicons:dashboard-square-03",
     Value : "Dashboard",
     To : "/dashboard",
 },
 {
-    Icon : "arcticons:current-activity",
+    Icon : "hugeicons:task-daily-01",
     Value : "Actividades",
     To : "/actividades",
 },
 {
-    Icon : "circum:user",
+    Icon : "hugeicons:user",
     Value : "Asistencias",
     To : "/asistencias",
 },
 {
-    Icon : "clarity:group-line",
+    Icon : "hugeicons:user-group",
     Value : "Coworking",
     To : "/coworking",
 },
 {
-    Icon : "material-symbols-light:analytics-outline-rounded",
+    Icon : "hugeicons:analytics-01",
     Value : "Analytic",
     To : "/analytic",
 },
 {
-    Icon : "weui:info-outlined",
+    Icon : "hugeicons:information-circle",
     Value : "Info.",
     To : "/informacion",
 },

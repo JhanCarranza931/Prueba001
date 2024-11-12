@@ -28,7 +28,7 @@
         <div class="flex justify-between items-center border-b pb-2">
           <div class="flex items-center">
               <img class="h-8 max-w-8 rounded-full mr-4" :src="'https://png.pngtree.com/png-clipart/20231019/original/pngtree-user-profile-avatar-png-image_13369988.png'" alt="free">
-              <div>
+              <div> 
                 <div class="font-medium ">{{item.usuario.nombre+' '+item.usuario.apellido}}</div>
                 <div class="text-gray-500 text-xs">{{ item.usuario.carrera }}</div>
               </div>
@@ -75,6 +75,8 @@ const isUser = sessionStore.isUser;
  const actividadesStore = new useActividadStore()
 
  const actividades = computed(()=> actividadesStore.actividades)
+ console.log(actividades.value)
+
 
  onMounted(async()=>{
     actividadesStore.fetchActividades();

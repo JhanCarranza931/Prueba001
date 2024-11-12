@@ -21,6 +21,7 @@
                 v-model="dni"
                 @input="validateDni"
                 autocomplete="off"
+                maxlength="8"
                 />
                 <!-- Icono dentro del input, centrado verticalmente -->
                 <Icon

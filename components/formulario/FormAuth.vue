@@ -63,22 +63,16 @@ const signIn = async () => {
         us: data.body.user.us
       }
  
-      console.log(userData)
-      console.log('Esto es la data que deberia mostrar: ',data.body.user.us)
       sessionStore.setUser(userData);
       router.push('/dashboard');
     } else {
-      console.log("Login failed:", data.body.message);
-      console.log (data.body)
       if(!data.body.success){
         alerta.value = data.body.message
         auth.value.pass= ''
       }
-      
-      // alert("Username or password is invalid");
     }
   } catch (error) { 
-    console.error("Error during login:", error);
+
     alert("Error during login. Please try again.");
   }finally{
     isLoading.value = false

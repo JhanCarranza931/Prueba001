@@ -2,11 +2,12 @@
     <template v-if="isAdmin">
         <ModalNewCoworking></ModalNewCoworking>
         <TablesCoworkingTable></TablesCoworkingTable>
+
+        
     </template>
     <template v-else-if="isUser">
     <h1>Hola Coworking</h1>
     </template>
-    
 </template>
 <script setup>
 import { useSessionStore } from '~/stores/sessionStore';

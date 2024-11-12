@@ -90,7 +90,6 @@ export default defineEventHandler(async (event) => {
     try{
       const body = await readBody(event);
         const dni = body;
-        console.log(dni)
         const usuario = await prisma.usuario.findUnique({
           where: { dni: dni },  
         });
@@ -108,10 +107,10 @@ export default defineEventHandler(async (event) => {
             hora_entrada: 'desc',
           },
         });
-    
+        const fechaHoy = new Date();
+          const fechaAsistencia = new Date(ultimaAsistencia.hora_entrada); 
         if (ultimaAsistencia) {
-          const fechaHoy = new Date();
-          const fechaAsistencia = new Date(ultimaAsistencia.hora_entrada);
+          
     
           if (
             fechaAsistencia.toDateString() === fechaHoy.toDateString() &&
@@ -128,6 +127,14 @@ export default defineEventHandler(async (event) => {
             message: "No se encontró un registro de asistencia para este usuario",
           };
         }
+        const tiempoTranscurridoHoras = (fechaHoy - fechaAsistencia) / (1000 * 60 * 60); // Convertir milisegundos a horas
+
+        if (tiempoTranscurridoHoras < 2) {
+          return {
+            status: 400,
+            message: `${usuario.nombre}, debes esperar  para registrar la salida.`,
+          };
+        }
         await prisma.asistencias.update({
           where:{
           id: ultimaAsistencia.id
@@ -141,7 +148,7 @@ export default defineEventHandler(async (event) => {
           message: "Salida registrada correctamente",
         };
     }catch(error){
-      console.log(error)
+      console.log('eRROR GRACE',error)
       return{
         status:500,
         message:"Error aL registrar tu salida"

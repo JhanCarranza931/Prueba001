@@ -19,6 +19,22 @@
 .txtcolor{
     color: #1F1F22;
 }
+
+.gradient-verde {
+  background: linear-gradient(270deg, rgba(6, 183, 71, 0.70) 0.35%, #06B747 23.15%, #06B747 97.45%);
+}
+
+.gradient-morado {
+  background: linear-gradient(90deg, #9747FF 2.47%, rgba(151, 71, 255, 0.89) 71.93%, rgba(151, 71, 255, 0.70) 99.88%);
+}
+
+.gradient-azul {
+  background: linear-gradient(90deg, #0165FD 0.12%, #0165FD 76.84%, rgba(1, 101, 253, 0.70) 100.12%);
+}
+
+.gradient-celeste {
+  background: linear-gradient(90deg, #01CAFF 0%, #01CAFF 71.54%, rgba(0, 200, 255, 0.70) 100%);
+}
 .container_stats{
     .container {
         width: 100%;
@@ -110,4 +126,8 @@
     100% {
       height: 0%;
     }
-  }
+  };
+
+ 
+  
+  

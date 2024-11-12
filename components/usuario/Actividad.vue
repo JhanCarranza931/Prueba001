@@ -6,15 +6,10 @@
 const id = user.value.id
 
 onMounted(async () => {
-      actividadesStore.fechActividadesForId(id); // Corregir el nombre de la función
+      actividadesStore.fechActividadesForId(id); 
     });
 
 const actividades = computed(()=> actividadesStore.userActividad)
-
-
-
-console.log('Actividades',actividades)
-
 const data = ref({
   actividad: '',
   id_user : id,
@@ -25,10 +20,11 @@ const submitActividad = async ()=>{
     await actividadesStore.addActividad(data.value)
     isShowModal.value = false
 }
-console.log(data.value)
 
+// const editEstado = async ()=>{
 
-//Modal 
+// }
+
  const isShowModal = ref(false)
 
 
@@ -75,7 +71,6 @@ console.log(data.value)
 </script>
 <template>
   <main class="flex  flex-col gap-5 p-6">
-   <!-- Header -->
     <header class="header flex justify-start items-center md:bg-header bg-no-repeat bg-contain min-h-72 bg-right py-8 border-b border-gray-200">
        <div class="flex flex-col">
          <h1 class="text-4xl font-bold">¡Bienvenido a tu espacio de Actividades, Jhan!"</h1>
@@ -85,8 +80,6 @@ console.log(data.value)
          <img src="/assets/img/actividades-hero.webp" width="281px" alt="Actividades">
        </div>
    </header>
-
-   <!-- Registro de actividadd -->
    <section class="flex flex-col gap-1 w-full">
      <h2 class="text-2xl font-semibold text-[#3B5649]  ">Registra tu Actividad</h2>
      <p class="text-gray-600 mb-6 font-medium">Llena los datos para registrar tus actividades  que realizarás durante el día</p>
@@ -148,28 +141,31 @@ console.log(data.value)
           </div>
         </header>
         <div class="flex  flex-wrap gap-3 ">
-          <article v-for="actividad in actividades" class="borde p-4 flex flex-col gap-4 flex-1 min-w-[340px] max-w-[420px]">
-            <div class="flex justify-between">
-              <span class="rounded-full px-3 py-1 font-semibold text-[13.33px] cursor-pointer "
+          <article v-for="actividad in actividades" :key="actividad.id" class="border p-4 flex flex-col gap-4 flex-1 min-w-[340px] max-w-[420px]">
+      <div class="flex justify-between">
+        <span class="rounded-full px-3 py-1 font-semibold text-[13.33px] cursor-pointer"
               :class="{
                 'bg-[#FFF1C1] text-[#E9AB00]': actividad.estado.stado_actividad === 'En progreso',
                 'bg-[#E7FFDC] text-[#00AE34]': actividad.estado.stado_actividad === 'Completado',
                 'bg-[#FFD3D3] text-[#FF3300]': actividad.estado.stado_actividad === 'Pendiente'
-              }"> • {{ actividad.estado.stado_actividad }}</span>
-              
-              <button>Editar</button>
-            </div>
-            <p>{{ actividad.actividad }}</p>
-            <span>{{ formatDate(actividad.fecha) }}</span>
-            
-          </article>
+              }">
+          • 
+          <select
+            v-model="actividad.estado.stado_actividad"
+            @change="editEstado(actividad.id)"
+            class="bg-transparent focus:outline-none font-semibold">
+            <option value="Pendiente">Pendiente</option>
+            <option value="En progreso">En progreso</option>
+            <option value="Completado">Completado</option>
+          </select>
+        </span>
+      </div>
+      <p>{{ actividad.actividad }}</p>
+      <span>{{ formatDate(actividad.fecha) }}</span>
+    </article>
         </div>
       </div>
      </section>
-
-
-
-
  </main>
 </template>
 

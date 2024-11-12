@@ -20,7 +20,9 @@
       </section>
 
     </section>
-    <div v-else-if="isUser">Dashboard Usuario</div>
+    <div v-else-if="isUser">
+      <EchartsDashboardUser></EchartsDashboardUser>
+    </div>
     
 </template>
   
