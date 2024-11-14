@@ -31,12 +31,7 @@ const link = [{
     Icon : "hugeicons:analytics-01",
     Value : "Analytic",
     To : "/analytic",
-},
-{
-    Icon : "hugeicons:information-circle",
-    Value : "Info.",
-    To : "/informacion",
-},
+}, 
 
 ]
 

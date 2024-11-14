@@ -17,7 +17,8 @@ export const useActividadStore = defineStore('actividades', {
         body: JSON.stringify(actividades),
       });
       // await this.fetchUsers(); 
-      await this.fechActividadesForId(response.id)
+      // await this.fechActividadesForId(response.id)
+      await this.fetchActividades()
       return response;
       
     },

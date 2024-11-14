@@ -23,7 +23,6 @@
                 autocomplete="off"
                 maxlength="8"
                 />
-                <!-- Icono dentro del input, centrado verticalmente -->
                 <Icon
                 name="hugeicons:user"
                 class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
@@ -62,7 +61,6 @@
         layout: false
     });
     const dni = ref('')
-    //Validación de DNI
     const dniError = ref(false);
     const isLoading = ref(false)
 
@@ -73,7 +71,7 @@
         dniError.value = !dniPattern.test(dni.value) || dni.value.length !== 8;
     };
 
-    //Metodo submit para enviar el formulario 
+
     const asisStore = useAsistenciasStore();
 
     const submitAsis = async () => {

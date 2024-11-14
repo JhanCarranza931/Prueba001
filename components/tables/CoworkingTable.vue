@@ -131,7 +131,7 @@ const handleDelete = async (userId) => {
         <tr v-for="user in coworking" :key="user.id" class="border-b hover:bg-gray-100">
           <td class="py-3 px-4">
             <div class="flex items-center">
-              <img class="h-8 max-w-8 rounded-full mr-4" :src="'https://png.pngtree.com/png-clipart/20231019/original/pngtree-user-profile-avatar-png-image_13369988.png'" :alt="user.name">
+              <img class="h-8 max-w-8 rounded-full mr-4" :src="`/uploads/${user.foto}`" :alt="user.name">
               <div>
                 <div class="font-medium">{{ user.nombre }} {{ user.apellido }}</div>
                 <div class="text-gray-500 text-xs">{{ user.carrera }}</div>

@@ -19,4 +19,4 @@
     increase: number
     icon: string
   }>()
-  </script>
+  </script> 

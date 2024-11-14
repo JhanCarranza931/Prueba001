@@ -57,8 +57,8 @@ export const useSessionStore = defineStore('session', {
 
   getters: {
     isAuthenticated: (state) => !!state.token, // Verifica si el token existe
-    isAdmin: (state) => state.role && useSessionStore().decrypt(state.role) === '2',
-    isUser: (state) => state.role && useSessionStore().decrypt(state.role) === '3',
+    isAdmin: (state) => state.role && useSessionStore().decrypt(state.role) === '1',
+    isUser: (state) => state.role && useSessionStore().decrypt(state.role) === '2',
   },
 
   persist: {

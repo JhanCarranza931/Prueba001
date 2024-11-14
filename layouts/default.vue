@@ -9,13 +9,13 @@
         <h3 class="capitalize">{{ routerName }}</h3>
         <div class="flex gap-6 items-center">
           <div>
-            <h3 class="font-bold">{{ user.nombre +' '+ user.apellido }}</h3>
-            <p class="text-[13.33px]">{{ user.correo }}</p>
+            <h3 class="font-medium text-sm">{{ user.nombre +' '+ user.apellido }}</h3>
+            <p class=" text-xs font-medium text-gray-600 text-end">{{ user.carrera }}</p>
           </div>
           <img
-            src="https://pstangarana.com/wp-content/uploads/2024/07/BECADO-g-SN-2.jpg"
+            :src="`/uploads/${user.foto}`"
             alt="Usuario"
-            class="w-14 h-14 rounded-full"
+            class="w-12 h-12 rounded-full"
           />
         </div>
       </nav>
