@@ -1,8 +1,5 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from 'bcryptjs';
-import { writeFile } from 'node:fs/promises';
-import { join } from 'node:path';
-import { mkdir } from 'node:fs/promises';
 
 const prisma = new PrismaClient();
 
@@ -19,29 +16,27 @@ export default defineEventHandler(async (event) => {
 
     const fields = {};
     let fileData;
-    
+
     body.forEach((part) => {
-      if (part.name === 'foto' && part.type === 'image/png') {
+      if (part.name === 'foto') {
         fileData = part;
       } else if (part.data) {
         fields[part.name] = part.data.toString('utf-8');
       }
     });
-    
-    if (!fileData) {
+
+    if (!fileData || !fileData.data) {
       throw createError({
         statusCode: 400,
         message: 'No se ha proporcionado un archivo de foto',
       });
     }
-    
-    // Verificación para ver si `fileData` fue asignado correctamente
-    console.log('fileData:', fileData);
-    console.log('fields:', fields);
 
+    // Extrae campos del formulario
     const { dni, nombre, apellido, carrera, correo, password, telefono, rol } = fields;
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    // Busca el rol en la base de datos
     const searchRol = await prisma.roles.findUnique({
       where: { rol: rol },
     });
@@ -53,16 +48,7 @@ export default defineEventHandler(async (event) => {
       });
     }
 
-    const uploadDir = join(process.cwd(),'public' ,'uploads');
-    
-    // Ensure the upload directory exists
-    await mkdir(uploadDir, { recursive: true });
-    
-    const fileName = `${Date.now()}-${fileData.filename}`;
-    const filePath = join(uploadDir, fileName);
-
-    await writeFile(filePath, fileData.data);
-
+    // Crea el usuario con la imagen en formato binario
     const NewUsuario = await prisma.usuario.create({
       data: {
         dni,
@@ -72,7 +58,7 @@ export default defineEventHandler(async (event) => {
         correo,
         password: hashedPassword,
         telefono,
-        foto: fileName, // Store the file name instead of the binary data
+        foto: fileData.data, // Asegúrate de que `fileData.data` sea el buffer binario de la imagen
         roles: {
           create: {
             rol_id: searchRol.id,
@@ -85,11 +71,11 @@ export default defineEventHandler(async (event) => {
       status: 201,
       usuario: {
         ...NewUsuario,
-        password: undefined, // Don't send the password back to the client
+        password: undefined,
       },
     };
   } catch (error) {
-    console.error('Error creating user:', error);
+    console.error('Error creando el usuario:', error);
     throw createError({
       statusCode: error.statusCode || 500,
       message: `Error al crear el usuario: ${error.message}`,

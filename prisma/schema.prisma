@@ -27,7 +27,7 @@ model Usuario {
   correo    String @unique
   password  String
   telefono  String? 
-  foto      String?
+  foto      Bytes?
 
 
   actividades Actividades[]

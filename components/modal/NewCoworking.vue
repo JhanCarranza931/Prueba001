@@ -36,56 +36,56 @@
                   <div class="sm:col-span-3">
                     <label for="dni" class="block text-sm font-medium text-gray-700">DNI</label>
                     <div class="mt-1">
-                      <input type="text" name="dni" id="dni" v-model="form.dni" required class="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                      <input type="text" name="dni" id="dni" v-model="form.dni" required class=" py-1 px-2 shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md">
                     </div>
                   </div>
 
                   <div class="sm:col-span-3">
                     <label for="nombre" class="block text-sm font-medium text-gray-700">Nombres</label>
                     <div class="mt-1">
-                      <input type="text" name="nombre" id="nombre" v-model="form.nombre" required class="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                      <input type="text" name="nombre" id="nombre" v-model="form.nombre" required class="py-1 px-2 shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md">
                     </div>
                   </div>
 
                   <div class="sm:col-span-3">
                     <label for="apellido" class="block text-sm font-medium text-gray-700">Apellidos</label>
                     <div class="mt-1">
-                      <input type="text" name="apellido" id="apellido" v-model="form.apellido" required class="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                      <input type="text" name="apellido" id="apellido" v-model="form.apellido" required class="py-1 px-2 shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md">
                     </div>
                   </div>
 
                   <div class="sm:col-span-3">
                     <label for="correo" class="block text-sm font-medium text-gray-700">Correo</label>
                     <div class="mt-1">
-                      <input type="email" name="correo" id="correo" v-model="form.correo" required class="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                      <input type="email" name="correo" id="correo" v-model="form.correo" required class="py-1 px-2 shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md">
                     </div>
                   </div>
 
                   <div class="sm:col-span-3">
                     <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
                     <div class="mt-1">
-                      <input type="password" name="password" id="password" v-model="form.password" required class="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                      <input type="password" name="password" id="password" v-model="form.password" required class=" py-1 px-2 shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md">
                     </div>
                   </div>
 
                   <div class="sm:col-span-3">
                     <label for="telefono" class="block text-sm font-medium text-gray-700">Teléfono</label>
                     <div class="mt-1">
-                      <input type="tel" name="telefono" id="telefono" v-model="form.telefono" required class="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                      <input type="tel" name="telefono" id="telefono" v-model="form.telefono" required class="py-1 px-2 shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md">
                     </div>
                   </div>
 
                   <div class="sm:col-span-3">
                     <label for="carrera" class="block text-sm font-medium text-gray-700">Profesión</label>
                     <div class="mt-1">
-                      <input type="text" name="carrera" id="carrera" v-model="form.carrera" required class="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                      <input type="text" name="carrera" id="carrera" v-model="form.carrera" required class="py-1 px-2shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md">
                     </div>
                   </div>
 
                   <div class="sm:col-span-3">
                     <label for="rol" class="block text-sm font-medium text-gray-700">Rol</label>
                     <div class="mt-1">
-                      <select id="rol" name="rol" v-model="form.rol" required class="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                      <select id="rol" name="rol" v-model="form.rol" required class=" py-1 px-2 shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md">
                         <option value="">Elige un rol</option>
                         <option value="admin">Administrador</option>
                         <option value="user">Usuario</option>
@@ -105,7 +105,7 @@
                         </svg>
                       </span>
                       <button type="button" @click="$refs.fileInput.click()" class="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                        Cambiar
+                        Seleccionar foto
                       </button>
                       <input ref="fileInput" type="file" @change="handleFileChange" accept="image/*" class="hidden" />
                     </div>

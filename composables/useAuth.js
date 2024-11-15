@@ -1,5 +1,6 @@
 export function useAuth() {
     const sessionStorage = useSessionStore();
+    const usuario = useUserStore()
     const isAuthenticated = ref(false);
     const user = ref(null);
     const role = ref(null);
