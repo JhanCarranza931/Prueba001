@@ -31,7 +31,7 @@
                   <option value=""  disabled selected>Elige un colaborador</option>
                   <template v-for="usuario in users">
                     <template v-for="rol in usuario.roles">
-                      <option :value="usuario.id"    v-if="rol.rol_id===3">{{ usuario.nombre+' '+usuario.apellido }}</option>
+                      <option :value="usuario.id"    v-if="rol.rol_id===2">{{ usuario.nombre+' '+usuario.apellido }}</option>
                     </template >
                   </template>
                 
@@ -142,6 +142,7 @@ const isUser = sessionStore.isUser;
   const user = useUserStore();
 
   const users =   computed(()=>user.users)
+  console.log(users)
   const data = ref({
     actividad: '',
     id_user : '',
