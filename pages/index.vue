@@ -1,9 +1,11 @@
-<template> 
+<template>
+
 </template>
-<script setup >
+<script setup>
+
 definePageMeta({
-    middleware:'auth',
-    layout: 'custom'
-  
+  middleware: "auth",
+  layout: "custom",
 });
+
 </script>

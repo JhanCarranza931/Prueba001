@@ -9,6 +9,21 @@
     font-family: Ibrand;
 }
 
+body.scroll-active{
+  overflow: auto;
+  padding-right: 17px; 
+}
+body::-webkit-scrollbar {
+width: 5px;               /* width of the entire scrollbar */
+}
+
+
+
+body::-webkit-scrollbar-thumb {
+background-color: #059669;    /* color of the scroll thumb */
+border-radius: 20px;       /* roundness of the scroll thumb */
+}
+
 #__nuxt{
     display: flex;
 }

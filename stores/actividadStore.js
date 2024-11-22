@@ -26,7 +26,17 @@ export const useActividadStore = defineStore('actividades', {
       this.userActividad = await $fetch(`/api/actividad/${id}`)
       console.log(this.userActividad)
       
-    }
+    },
+    // Actualizar el estado de una actividad
+    async updateEstadoActividad(id_actividad, id_estado) {
+      const response = await $fetch('/api/actividadestado', {
+        method: 'PUT',
+        body: JSON.stringify({ id_actividad, id_estado }),
+      });
+      await this.fetchActividades(); // Recargar actividades después de actualizar el estado
+      return response;
+    },
+  
     
 
     // async delete(userId){

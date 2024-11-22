@@ -5,6 +5,7 @@ const prisma = new PrismaClient();
 export default defineEventHandler(async (event)=>{
     const body = await readBody(event)
     const {actividad, id_user,id_estado} = body
+    console.log(body)
 
     try {
         const NewActividad= await prisma.actividades.create({
@@ -26,7 +27,7 @@ export default defineEventHandler(async (event)=>{
     } catch (error) {
         return {
             status: 500,
-            message: 'Error al crear el usuario',
+            message: `'Error al Asignar la actividad'${error}`,
           };
     }
 })

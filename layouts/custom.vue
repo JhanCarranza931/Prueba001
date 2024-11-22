@@ -1,6 +1,5 @@
 <template>
-    <section class="flex items-center h-screen w-[1280px] m-auto justify-between">
-        <img src="../assets/img/auth.webp" alt="auth" class=" w-[655px]">
+    <section class="flex items-center h-screen  m-auto justify-between">
         <div>
             <FormularioFormAuth></FormularioFormAuth>
         </div>

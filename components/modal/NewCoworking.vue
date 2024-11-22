@@ -2,7 +2,7 @@
   <div class="flex items-center justify-end p-6">
     <button
       @click="isModalOpen = true"
-      class="px-20 py-2 bg-[#00DC82] text-white rounded hover:bg-[#00C062] focus:outline-none focus:ring-2 focus:ring-opacity-50 transition duration-300"
+      class="px-20 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-opacity-50 transition duration-300"
     >
       Agregar
     </button>

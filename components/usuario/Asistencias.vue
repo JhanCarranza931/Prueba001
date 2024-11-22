@@ -20,22 +20,10 @@
   
       <!-- Registro de asistencia -->
       <section class="flex flex-col gap-1 w-full">
-        <h2 class="text-2xl font-semibold text-[#3B5649]  ">Registra tu asistencia</h2>
-        <p class="text-gray-600 mb-6 font-medium">Llena los datos para registrar tu asistencia de tu hora de entrada y de salida.</p>
+        <h2 class="text-2xl font-semibold text-[#3B5649]  ">Asistencias </h2>
+        <p class="text-gray-600 mb-6 font-medium">Aquí puedes visualizar tus asistencias</p>
         
-        <div class="flex gap-4 items-end">
-          <div class="flex flex-col w-full max-w-screen-md">
-            <label class="font-medium" for="dni">DNI</label>
-            <input 
-            type="text"
-            id="dni" 
-            placeholder="Ingresa tu DNI" 
-            class="w-full max-w-[720px] p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
-            />
-          </div>
-          <button class="bg-green-600 text-white px-6 py-2 rounded-md hover:bg-green-600 font-extrabold">Entrada</button>
-          <button class="bg-orange-600 text-white px-6 py-2 rounded-md hover:bg-orange-600 font-extrabold">Salida</button>
-        </div>
+
       </section>
   
       <div class="flex items-center justify-end gap-5 | space-x-4 p-4 ">

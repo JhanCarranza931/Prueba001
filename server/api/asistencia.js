@@ -7,7 +7,13 @@ export default defineEventHandler(async (event) => {
   
   const method = event.node.req.method;
 
-  const hoy = new Date();
+
+  const hoy = new Date();  // Fecha y hora local del servidor
+const hoyUTC = new Date(hoy.toISOString());  // Convertimos a UTC
+
+// El rango sería desde medianoche hasta el final del día en UTC
+const startDate = new Date(hoyUTC.setHours(0, 0, 0, 0));  // Medianoche en UTC
+const endDate = new Date(hoyUTC.setHours(23, 59, 59, 999));  // Final del día en UTC
   hoy.setHours(0, 0, 0, 0); 
 
   if (method === "POST") {
@@ -30,8 +36,8 @@ export default defineEventHandler(async (event) => {
         where:{
           usuario_id: usuario.id,
           hora_entrada : {
-            gte:hoy,
-            lt:new Date(hoy.getTime() + 24 * 60 * 60 * 1000)
+            gte:startDate,
+            lt:endDate
           }
         }
       })

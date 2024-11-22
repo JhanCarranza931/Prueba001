@@ -32,7 +32,7 @@
                 'text-center p-2 rounded-full cursor-pointer transition-colors duration-200',
                 {
                   'text-gray-400': day.inactive,
-                  'bg-emerald-500 text-white': day.active,
+                  'bg-emerald-600 text-white': day.active,
                   'hover:bg-gray-100': !day.inactive && !day.active,
                   'text-gray-800 ': !day.inactive && !day.active
                 }

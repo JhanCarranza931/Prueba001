@@ -7,7 +7,9 @@ export default defineEventHandler(async (event) => {
     // Obtén todos los usuarios y sus roles
     const usuarios = await prisma.usuario.findMany({
       include: {
-        roles: true,
+        roles: true
+        
+        
       },
     });
 

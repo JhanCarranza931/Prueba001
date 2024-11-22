@@ -27,6 +27,7 @@ const handleDelete = async (userId) => {
           <th class="text-left py-3 px-4 font-semibold">DNI</th>
           <th class="text-left py-3 px-4 font-semibold">Correo</th>
           <th class="text-left py-3 px-4 font-semibold">Teléfono</th>
+          <th class="text-left py-3 px-4 font-semibold">Rol</th>
           <th class="text-left py-3 px-4 font-semibold">Acción</th>
         </tr>
       </thead>
@@ -46,23 +47,6 @@ const handleDelete = async (userId) => {
           <td class="py-3 px-4"><div class="h-4 bg-gray-300 rounded w-20"></div></td>
           <td class="py-3 px-4"><div class="h-4 bg-gray-300 rounded w-32"></div></td>
           <td class="py-3 px-4"><div class="h-4 bg-gray-300 rounded w-20"></div></td>
-          <td class="py-3 px-4 flex space-x-2">
-            <div class="h-8 w-8 bg-gray-300 rounded"></div>
-            <div class="h-8 w-8 bg-gray-300 rounded"></div>
-          </td>
-        </tr>
-        <tr class="border-b animate-pulse" >
-          <td class="py-3 px-4">
-            <div class="flex items-center">
-              <div class="h-8 w-8 rounded-full bg-gray-300 mr-4"></div>
-              <div>
-                <div class="h-4 bg-gray-300 rounded w-32 mb-1"></div>
-                <div class="h-3 bg-gray-200 rounded w-24"></div>
-              </div>
-            </div>
-          </td>
-          <td class="py-3 px-4"><div class="h-4 bg-gray-300 rounded w-20"></div></td>
-          <td class="py-3 px-4"><div class="h-4 bg-gray-300 rounded w-32"></div></td>
           <td class="py-3 px-4"><div class="h-4 bg-gray-300 rounded w-20"></div></td>
           <td class="py-3 px-4 flex space-x-2">
             <div class="h-8 w-8 bg-gray-300 rounded"></div>
@@ -82,23 +66,6 @@ const handleDelete = async (userId) => {
           <td class="py-3 px-4"><div class="h-4 bg-gray-300 rounded w-20"></div></td>
           <td class="py-3 px-4"><div class="h-4 bg-gray-300 rounded w-32"></div></td>
           <td class="py-3 px-4"><div class="h-4 bg-gray-300 rounded w-20"></div></td>
-          <td class="py-3 px-4 flex space-x-2">
-            <div class="h-8 w-8 bg-gray-300 rounded"></div>
-            <div class="h-8 w-8 bg-gray-300 rounded"></div>
-          </td>
-        </tr>
-        <tr class="border-b animate-pulse" >
-          <td class="py-3 px-4">
-            <div class="flex items-center">
-              <div class="h-8 w-8 rounded-full bg-gray-300 mr-4"></div>
-              <div>
-                <div class="h-4 bg-gray-300 rounded w-32 mb-1"></div>
-                <div class="h-3 bg-gray-200 rounded w-24"></div>
-              </div>
-            </div>
-          </td>
-          <td class="py-3 px-4"><div class="h-4 bg-gray-300 rounded w-20"></div></td>
-          <td class="py-3 px-4"><div class="h-4 bg-gray-300 rounded w-32"></div></td>
           <td class="py-3 px-4"><div class="h-4 bg-gray-300 rounded w-20"></div></td>
           <td class="py-3 px-4 flex space-x-2">
             <div class="h-8 w-8 bg-gray-300 rounded"></div>
@@ -117,6 +84,45 @@ const handleDelete = async (userId) => {
           </td>
           <td class="py-3 px-4"><div class="h-4 bg-gray-300 rounded w-20"></div></td>
           <td class="py-3 px-4"><div class="h-4 bg-gray-300 rounded w-32"></div></td>
+          <td class="py-3 px-4"><div class="h-4 bg-gray-300 rounded w-20"></div></td>
+          <td class="py-3 px-4"><div class="h-4 bg-gray-300 rounded w-20"></div></td>
+          <td class="py-3 px-4 flex space-x-2">
+            <div class="h-8 w-8 bg-gray-300 rounded"></div>
+            <div class="h-8 w-8 bg-gray-300 rounded"></div>
+          </td>
+        </tr>
+        <tr class="border-b animate-pulse" >
+          <td class="py-3 px-4">
+            <div class="flex items-center">
+              <div class="h-8 w-8 rounded-full bg-gray-300 mr-4"></div>
+              <div>
+                <div class="h-4 bg-gray-300 rounded w-32 mb-1"></div>
+                <div class="h-3 bg-gray-200 rounded w-24"></div>
+              </div>
+            </div>
+          </td>
+          <td class="py-3 px-4"><div class="h-4 bg-gray-300 rounded w-20"></div></td>
+          <td class="py-3 px-4"><div class="h-4 bg-gray-300 rounded w-32"></div></td>
+          <td class="py-3 px-4"><div class="h-4 bg-gray-300 rounded w-20"></div></td>
+          <td class="py-3 px-4"><div class="h-4 bg-gray-300 rounded w-20"></div></td>
+          <td class="py-3 px-4 flex space-x-2">
+            <div class="h-8 w-8 bg-gray-300 rounded"></div>
+            <div class="h-8 w-8 bg-gray-300 rounded"></div>
+          </td>
+        </tr>
+        <tr class="border-b animate-pulse" >
+          <td class="py-3 px-4">
+            <div class="flex items-center">
+              <div class="h-8 w-8 rounded-full bg-gray-300 mr-4"></div>
+              <div>
+                <div class="h-4 bg-gray-300 rounded w-32 mb-1"></div>
+                <div class="h-3 bg-gray-200 rounded w-24"></div>
+              </div>
+            </div>
+          </td>
+          <td class="py-3 px-4"><div class="h-4 bg-gray-300 rounded w-20"></div></td>
+          <td class="py-3 px-4"><div class="h-4 bg-gray-300 rounded w-32"></div></td>
+          <td class="py-3 px-4"><div class="h-4 bg-gray-300 rounded w-20"></div></td>
           <td class="py-3 px-4"><div class="h-4 bg-gray-300 rounded w-20"></div></td>
           <td class="py-3 px-4 flex space-x-2">
             <div class="h-8 w-8 bg-gray-300 rounded"></div>
@@ -138,15 +144,19 @@ const handleDelete = async (userId) => {
               </div>
             </div>
           </td>
-          <td class="py-3 px-4">{{ user.dni }}</td>
-          <td class="py-3 px-4">{{ user.correo }}</td>
-          <td class="py-3 px-4">{{ user.telefono }}</td>
+          <td class="py-3 px-4 text-sm">{{ user.dni }}</td>
+          <td class="py-3 px-4 text-sm">{{ user.correo }}</td>
+          <td class="py-3 px-4 text-sm">{{ user.telefono }}</td>
+          <td v-for="rol in user.roles">
+            <p v-if="rol.rol_id === 1" class="bg-blue-100 w-fit px-4 py-1 rounded-xl text-blue-700 font-bold text-sm ">• Administrador</p>
+            <p v-if="rol.rol_id === 2" class="bg-emerald-100 w-fit px-4 py-1 rounded-xl text-emerald-700 font-bold text-sm ">• Usuario</p>
+          </td>
           <td class="py-3 px-4">
             <button @click="handleEdit(user.id)" class="text-indigo-600 hover:text-indigo-900 mr-2 p-0">
-              <Icon name="carbon:edit" size="32px"></Icon>
+              <Icon name="carbon:edit" size="24px"></Icon>
             </button>
             <button @click="handleDelete(user.id)" class="text-red-400 hover:text-red-700 p-0">
-              <Icon name="material-symbols:delete-outline" size="32px"></Icon>
+              <Icon name="material-symbols:delete-outline" size="24px"></Icon>
             </button>
           </td>
         </tr>

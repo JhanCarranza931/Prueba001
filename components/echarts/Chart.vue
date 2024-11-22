@@ -57,7 +57,7 @@ const chartOptions = ref({
       data: [120, 170, 150, 80, 70, 110, 130, 11,80, 70, 110, 130],
       type: 'bar',
       itemStyle: {
-        color: '#00DC82',
+        color: '#10b985',
         borderRadius: [4, 4, 0, 0] 
       }
     }
