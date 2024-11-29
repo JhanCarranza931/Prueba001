@@ -4,7 +4,8 @@ const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event)=>{
     const body = await readBody(event)
-    const {actividad, id_user,id_estado} = body
+    const {actividad, id_user,id_estado,limit} = body
+    const limitdate = new Date(limit)
     console.log(body)
 
     try {
@@ -12,9 +13,8 @@ export default defineEventHandler(async (event)=>{
             data:{
                 actividad:actividad,
                 usuario_id: id_user,
-                estado_id : id_estado
-
-    
+                estado_id : id_estado,
+                fecha_limite:limitdate,
             } 
         });
         return {
@@ -27,7 +27,7 @@ export default defineEventHandler(async (event)=>{
     } catch (error) {
         return {
             status: 500,
-            message: `'Error al Asignar la actividad'${error}`,
+            message: 'Error al Asignar la actividad',
           };
     }
 })

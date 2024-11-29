@@ -10,16 +10,25 @@
       </p>
     </div>
     <header class="flex justify-between text-gray-700 items-center">
-      <select name="" id="" class="border py-1 px-4 rounded-md">
+      <select v-if="isAdmin" v-model="form.dni" name="" id="" class="border py-1 px-4 rounded-md">
         <option value="">Todos los colaboradores</option>
         <template v-for="usuario in users">
           <template v-for="rol in usuario.roles">
-            <option :value="usuario.id" v-if="rol.rol_id === 2">
+            <option :value="usuario.dni" v-if="rol.rol_id === 2">
               {{ usuario.nombre + " " + usuario.apellido }}
             </option>
           </template>
         </template>
       </select>
+      <select v-if="isUser" v-model="form.dni" name="" id="" class="border py-1 px-4 rounded-md hidden" >
+          <template >
+            <option  selected >
+              
+            </option>
+          </template>
+
+      </select>
+
       <div class="flex gap-6">
         <label for="">Desde: <input type="date" name="" id="" v-model="form.fechaInicio"  /></label>
         <label for="">Hasta: <input type="date" name="" id="" v-model="form.fechaFinal" /></label>
@@ -32,7 +41,7 @@
     </header>
   </section>
   <section class="px-6">
-    <TablesAsistencias></TablesAsistencias>
+    <TablesAsistencias ></TablesAsistencias>
   </section>
 
   <section class="p-6 flex flex-col gap-6">
@@ -46,11 +55,11 @@
       </p>
     </div>
     <header class="flex justify-between text-gray-700 items-center">
-      <select name="" id="" class="border py-1 px-4 rounded-md">
-        <option value="">Todos los colaboradores</option>
+      <select v-model="periodo.dni"  name="" id="" class="border py-1 px-4 rounded-md ">
+        <option value="" >Todos los colaboradores</option>
         <template v-for="usuario in users">
           <template v-for="rol in usuario.roles">
-            <option :value="usuario.id" v-if="rol.rol_id === 2">
+            <option :value="usuario.dni" v-if="rol.rol_id === 2">
               {{ usuario.nombre + " " + usuario.apellido }}
             </option>
           </template>
@@ -82,25 +91,33 @@ import { Toaster, toast } from 'vue-sonner'
 definePageMeta({
   middleware: "auth",
 });
+const sessionStore = useSessionStore();
+const isAdmin = sessionStore.isAdmin;
+const isUser = sessionStore.isUser;
+const { user } = useAuth();
 
-const user = useUserStore();
+const dni = user.value.dni;
+const nombre = user.value.nombre+''+user.value.apellido;
+const usuario = useUserStore();
 
-const users = computed(() => user.users);
+const users = computed(() => usuario.users);
 const report = useReporteStore()
 const reportActividades = useReporteActividadesStore()
 
 const form = ref({
   fechaInicio: '',
-  fechaFinal:''
+  fechaFinal:'',
+  dni:''
 })
 const periodo = ref({
   fechaInicio: '',
-  fechaFinal:''
+  fechaFinal:'',
+  dni:''
 })
 
 
 onMounted(() => {
-  user.fetchUsers();
+  usuario.fetchUsers();
   report.fetchAsistencias();
   reportActividades.fetchActividades()
 });
@@ -111,10 +128,11 @@ const exportToCSV = async ()  => {
   }
   else
   {
+    console.log(form.value.dni)
     console.log(form.value.fechaInicio)
-  const data = await report.procesarAsistencias(form.value.fechaInicio,form.value.fechaFinal);
+  const data = await report.procesarAsistencias(form.value.fechaInicio,form.value.fechaFinal,form.value.dni);
   if (data.length === 0) {
-    alert('No hay datos para exportar.');
+    toast.warning('No se encontraron registros, Intentalo nuevamente')
     return;
   }
   const convertToCSV = (data) => {
@@ -147,9 +165,9 @@ const exportActividad = async ()  => {
   else
   {
     console.log(periodo.value.fechaInicio)
-  const data = await reportActividades.procesarActividades(periodo.value.fechaInicio,periodo.value.fechaFinal);
+  const data = await reportActividades.procesarActividades(periodo.value.fechaInicio,periodo.value.fechaFinal ,periodo.value.dni);
   if (data.length === 0) {
-    alert('No hay datos para exportar.');
+    toast.warning('No se encontraron registros, Intentalo nuevamente')
     return;
   }
   const convertToCSV = (data) => {
@@ -169,7 +187,7 @@ const exportActividad = async ()  => {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = "Reporte_Asistencias.csv";
+  a.download = "Reporte_Actividades.csv";
   a.click();
   URL.revokeObjectURL(url);
 };
@@ -177,7 +195,5 @@ const exportActividad = async ()  => {
 </script>
 
 <style scoped>
-select{
-  display: none;
-}
+
 </style>

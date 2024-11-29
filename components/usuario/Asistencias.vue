@@ -1,5 +1,14 @@
 <script setup>
 
+const asisStore = useAsistenciasStore()
+const { user } = useAuth();
+
+const id = user.value.id;
+
+const asistencia = computed(()=>asisStore.asistencias)
+onMounted(()=>{
+  asisStore.fetchAsistencia()
+})
 
 
 </script>
@@ -46,8 +55,8 @@
           <option value="all">Todos los estados</option>
           <option value="completed">Presente</option>
           <option value="pending">Ausente</option>
-          <option value="pending">Tardanza</option>
-          <option value="pending">Permiso</option>
+          <!-- <option value="pending">Tardanza</option>
+          <option value="pending">Permiso</option> -->
           <!-- Agrega más opciones según sea necesario -->
         </select>
       </div>
@@ -59,26 +68,18 @@
       <table class="min-w-full bg-white">
         <thead>
           <tr class="border-b">
-            <th class="py-3 px-6 text-left text-[#7C7C7C] font-semibold">Nombres</th>
             <th class="py-3 px-6 text-left text-[#7C7C7C] font-semibold">Fecha Entrada</th>
             <th class="py-3 px-6 text-left text-[#7C7C7C] font-semibold">Fecha Salida</th>
-            <th class="py-3 px-6 text-left text-[#7C7C7C] font-semibold">Correo</th>
             <th class="py-3 px-6 text-left text-[#7C7C7C] font-semibold">Asistencia</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody v-for="asis in asistencia">
           <tr class="border-b">
-            <td class="py-4 px-6 flex items-center gap-4">
-              <img src="https://via.placeholder.com/40" alt="Foto de perfil" class="w-10 h-10 rounded-full" />
-              <div>
-                <p class="font-semibold">Jhan Carranza</p>
-                <p class="font-medium text-gray-500">75258714</p>
-              </div>
-            </td>
-            <td class="py-4 px-6 text-gray-600">12/10/2025 08:56</td>
-            <td class="py-4 px-6 text-gray-600">12/10/2025 18:40</td>
-            <td class="py-4 px-6 text-gray-600">jhancarranza@gmail.com</td>
-            <td class="py-4 px-6">
+            
+            <td class="py-4 px-6 text-gray-600" v-if="asis.usuario.id===id">{{ asis.hora_entrada }}</td>
+            <td class="py-4 px-6 text-gray-600"v-if="asis.usuario.id===id">{{ asis.hora_salida }}</td>
+
+            <td class="py-4 px-6"v-if="asis.usuario.id===id">
               <span class="inline-flex items-center gap-3 px-5 py-1 text-sm font-semibold text-[#00AE34] bg-[#E7FFDC] rounded-full">
                 <span class="w-2 h-2 rounded-full bg-green-500 "></span>
                 Presente

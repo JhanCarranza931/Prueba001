@@ -3,11 +3,11 @@
     <div class=" max-h-[350px] overflow-y-auto sc">
     <table class="min-w-full bg-white">
       <thead>
-        <tr class="border-b">
+        <tr class="border-b text-sm">
           <th class="text-left py-3 px-4 font-semibold">Nombres</th>
           <th class="text-left py-3 px-4 font-semibold">DNI</th>
           <th class="text-left py-3 px-4 font-semibold">Actividad</th>
-          <th class="text-left py-3 px-4 font-semibold">Fecha de Ingreso</th>
+          <th class="text-left py-3 px-4 font-semibold">Fecha de Inicio</th>
           <th class="text-left py-3 px-4 font-semibold">Estado</th>
 
         </tr>

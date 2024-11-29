@@ -56,6 +56,7 @@ model Actividades {
   id         Int   @id @default(autoincrement())  
   actividad  String
   fecha      DateTime @default(now())
+  fecha_limite DateTime?
   usuario_id Int?
   estado_id  Int?
 

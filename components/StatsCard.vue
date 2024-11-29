@@ -6,7 +6,7 @@
       </div>
       <div class="text-2xl txtcolor font-bold">{{ value }}</div>
       <div class="text-sm text-emerald-600">
-        +{{ increase }}% el mes pasado
+        + {{ increase }}% el mes pasado
       </div>
     </div>
   </template>

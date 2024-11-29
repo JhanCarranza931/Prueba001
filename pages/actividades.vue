@@ -11,7 +11,7 @@
         </div>
         <button
           @click="isShowModal = true"
-          class="text-sm px-4 bg-emerald-600 h-fit py-2  rounded-lg flex items-center text-white text-nowrap"
+          class="text-sm px-4 bg-emerald-600 h-fit py-2 rounded-lg flex items-center text-white text-nowrap"
         >
           <Icon name="hugeicons:add-01" class="mr-3"></Icon> Asignar Actividad
         </button>
@@ -50,7 +50,7 @@
                   class="w-full p-2 border rounded focus:ring-2 focus:ring-green-500 outline-none"
                 />
               </div>
-              <div class="flex items-end">
+              <div class="flex justify-between">
                 <div>
                   <label class="block mb-1 text-nowrap">Asignado a</label>
                   <select
@@ -72,28 +72,70 @@
                     </template>
                   </select>
                 </div>
-                <div class="flex gap-4 w-full justify-end h-fit">
-                  <p
-                    @click="isShowModal = false"
-                    class="border border-emerald-600 text-emerald-600 px-4 py-1 rounded w-fit cursor-pointer"
-                  >
-                    Cerrar
-                  </p>
-                  <button
-                    type="submit"
-                    class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-1 rounded w-fit"
-                  >
-                    Agregar
-                  </button>
+                <div>
+                  <label class="block mb-1 text-nowrap">Fecha Limite</label>
+                  <input
+                    v-model="data.limit"
+                    type="datetime-local"
+                    name=""
+                    id=""
+                  />
                 </div>
+              </div>
+              <div class="flex gap-4 w-full justify-end h-fit">
+                <p
+                  @click="isShowModal = false"
+                  class="border border-emerald-600 text-emerald-600 px-4 py-1 rounded w-fit cursor-pointer"
+                >
+                  Cerrar
+                </p>
+                <button
+                  type="submit"
+                  class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-1 rounded w-fit"
+                  v-if="!process"
+                >
+                  Agregar
+                </button>
+                <!-- Cargando .......-->
+                <button
+                v-if="process"
+                  class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-1 rounded flex w-[90px] justify-center items-center"
+                  disabled
+                >
+                  <svg
+                    class="animate-spin -ml-1 h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      class="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      stroke-width="4"
+                    ></circle>
+                    <path
+                      class="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                </button>
+                
               </div>
             </form>
           </div>
         </div>
       </Transition>
+      <Toaster
+            richColors 
+            position="top-center"
+            />
 
       <div class="flex justify-between py-6 px-6 border-b mb-6">
-        <div class="relative">
+        <div class="relative hidden">
           <input
             type="text"
             placeholder="Buscar por nombre..."
@@ -117,8 +159,8 @@
             v-model="selectedState"
             class="borde p-2 w-[200px] focus:outline-none"
           >
-            <option value=""  selected>Todos los estados</option>
-            <option value="En progreso" class=" text-yellow-600">
+            <option value="" selected>Todos los estados</option>
+            <option value="En progreso" class="text-yellow-600">
               En progreso
             </option>
             <option value="Completado" class="text-emerald-700">
@@ -152,7 +194,7 @@
             <div class="flex items-center">
               <img
                 class="h-8 max-w-8 rounded-full mr-4"
-                :src="'https://png.pngtree.com/png-clipart/20231019/original/pngtree-user-profile-avatar-png-image_13369988.png'"
+                :src="getbase(item.usuario.foto.data)"
                 alt="free"
               />
               <div>
@@ -165,22 +207,26 @@
               </div>
             </div>
             <select
-  v-model="item.estado.id" 
-  @change="cambiarEstado(item.id, item.estado.id)" 
-  class="rounded-full px-3 py-1 font-semibold text-[13.33px] focus:outline-none"
-  :class="{
-    'bg-[#FFF1C1] text-[#E9AB00]': item.estado.stado_actividad === 'En progreso',
-    'bg-[#E7FFDC] text-[#00AE34]': item.estado.stado_actividad === 'Completado',
-    'bg-[#FFD3D3] text-[#FF3300]': item.estado.stado_actividad === 'Pendiente',
-  }"
->
-  <option :value="3">• Pendiente</option>
-  <option :value="1">• En progreso</option>
-  <option :value="2">• Completado</option>
-</select>
+              v-model="item.estado.id"
+              @change="cambiarEstado(item.id, item.estado.id)"
+              class="rounded-full px-3 py-1 font-semibold text-[13.33px] focus:outline-none"
+              :class="{
+                'bg-[#FFF1C1] text-[#E9AB00]': item.estado.id === 1,
+                'bg-[#E7FFDC] text-[#00AE34]': item.estado.id === 2,
+                'bg-[#FFD3D3] text-[#FF3300]': item.estado.id === 3,
+              }"
+            >
+              <option :value="3">• Pendiente</option>
+              <option :value="1">• En progreso</option>
+              <option :value="2">• Completado</option>
+            </select>
           </div>
           <span class="text-sm text-[#2E875A] font-bold">Actividades</span>
           <p class="text-[13.33px]">{{ item.actividad }}</p>
+          <span class="text-xs text-gray-600"
+            >Fecha Limite: {{ formatDate(item.fecha_limite) }}</span
+          >
+          
         </div>
       </div>
     </section>
@@ -192,6 +238,7 @@
 </template>
 
 <script setup>
+import { Toaster, toast } from 'vue-sonner'
 definePageMeta({
   middleware: "auth",
 });
@@ -210,27 +257,66 @@ function getLocalDate() {
   const day = String(ahora.getDate()).padStart(2, "0");
   return `${year}-${month}-${day}`;
 }
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  return date.toLocaleString("es-ES", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  });
+}
 
-
+const process = ref(false)
 const selectedDate = ref(getLocalDate());
 const isLoading = ref(true);
 const isShowModal = ref(false);
 const actividadesStore = new useActividadStore();
-  const user = useUserStore();
+const user = useUserStore();
 
-  const users = computed(() => user.users);
+const users = computed(() => user.users);
 console.log(users);
 const data = ref({
   actividad: "",
   id_user: "",
   id_estado: 1,
+  limit: "",
 });
 
+const getbase = (data) => {
+  if (import.meta.client) {
+    return `data:image/jpeg;base64,${btoa(
+      String.fromCharCode(...new Uint8Array(data))
+    )}`;
+  }
+  return "";
+};
+
 const submitForm = async () => {
+  
+  process.value=true
   const response = await actividadesStore.addActividad(data.value);
+    
+
+ 
   isShowModal.value = false;
   isLoading.value = false;
-  console.log(response);
+  console.log(response.message);
+  if(response.status===201){
+    toast.success(response.message)
+  }
+  else if(response.status===500){
+    toast.error(response.message)
+
+  }
+  
+ 
+
+  actividadesStore.fetchActividades();
+  process.value=false
+  
 };
 const actividades = computed(() => actividadesStore.actividades);
 console.log("ac", actividades);
@@ -256,10 +342,14 @@ const filteredActividades = computed(() => {
     return matchesDate && matchesState;
   });
 });
-const cambiarEstado =async(id_actividad,id_estado)=>{
-      const response= await actividadesStore.updateEstadoActividad(id_actividad,id_estado)
-      console.log(response)
-}
+const cambiarEstado = async (id_actividad, id_estado) => {
+  const response = await actividadesStore.updateEstadoActividad(
+    id_actividad,
+    id_estado
+  );
+  toast.success(response.message)
+  console.log(response);
+};
 
 onMounted(async () => {
   await actividadesStore.fetchActividades();

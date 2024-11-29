@@ -56,5 +56,23 @@ export const useUserStore = defineStore('user', {
         throw error;
       }
     },
+
+  async updateUser(data){
+    try{
+      console.log(data)
+      const response = await $fetch('/api/updateuser',{
+        method:'PUT',
+        body:JSON.stringify(data)
+      })
+      console.log(response)
+
+
+      console.log('Datos enviados: ',data)
+
+    }
+    catch(error){
+      console.log(error)
+    }
+  }
   },
 });

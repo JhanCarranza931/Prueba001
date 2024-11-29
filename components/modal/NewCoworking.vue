@@ -36,7 +36,7 @@
                   <div class="sm:col-span-3">
                     <label for="dni" class="block text-sm font-medium text-gray-700">DNI</label>
                     <div class="mt-1">
-                      <input type="text" name="dni" id="dni" v-model="form.dni" required class=" py-1 px-2 shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                      <input type="text" name="dni" id="dni" v-model="form.dni" maxlength="8" required class=" py-1 px-2 shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md">
                     </div>
                   </div>
 
@@ -78,7 +78,7 @@
                   <div class="sm:col-span-3">
                     <label for="carrera" class="block text-sm font-medium text-gray-700">Profesión</label>
                     <div class="mt-1">
-                      <input type="text" name="carrera" id="carrera" v-model="form.carrera" required class="py-1 px-2shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                      <input type="text" name="carrera" id="carrera" v-model="form.carrera" required class="py-1 px-2 shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md">
                     </div>
                   </div>
 

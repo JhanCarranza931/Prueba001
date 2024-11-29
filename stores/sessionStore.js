@@ -27,8 +27,7 @@ export const useSessionStore = defineStore('session', {
       this.token = null;
       this.us = null;
     },
-    
-    // Métodos de encriptación y desencriptación
+
     encrypt(data) {
       return CryptoJS.AES.encrypt(data, SECRET_KEY).toString();
     },

@@ -1,8 +1,8 @@
 <template>
-  <div class="max-h-[350px] overflow-y-auto sc">
+  <div  class="max-h-[350px] overflow-y-auto sc">
     <table class="min-w-full bg-white">
       <thead>
-        <tr class="border-b">
+        <tr class="border-b  text-sm">
           <th class="text-left py-3 px-4 font-semibold">Nombres</th>
           <th class="text-left py-3 px-4 font-semibold">DNI</th>
           <th class="text-left py-3 px-4 font-semibold">Hora Entrada</th>
@@ -16,7 +16,7 @@
 
 
 
-      <tbody>
+      <tbody >
         <tr v-for="asis in asistencias" class="border-b hover:bg-gray-100">
           <td class="py-2 px-4">
             <div class="flex items-center">
@@ -41,6 +41,9 @@
   </div>
 </template>
 <script setup>
+const sessionStore = useSessionStore();
+const isAdmin = sessionStore.isAdmin;
+const isUser = sessionStore.isUser;
 
 const getbase = (data) => {
   if (import.meta.client) {

@@ -12,7 +12,7 @@ export const useActividadStore = defineStore('actividades', {
     },
 
     async addActividad(actividades) {
-      const response = await $fetch('/api/actividad', {
+      const response =  $fetch('/api/actividad', {
         method: 'POST',
         body: JSON.stringify(actividades),
       });
@@ -29,11 +29,10 @@ export const useActividadStore = defineStore('actividades', {
     },
     // Actualizar el estado de una actividad
     async updateEstadoActividad(id_actividad, id_estado) {
-      const response = await $fetch('/api/actividadestado', {
+      const response =  $fetch('/api/actividadestado', {
         method: 'PUT',
         body: JSON.stringify({ id_actividad, id_estado }),
       });
-      await this.fetchActividades(); // Recargar actividades después de actualizar el estado
       return response;
     },
   
