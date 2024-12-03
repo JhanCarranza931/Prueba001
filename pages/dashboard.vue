@@ -70,7 +70,7 @@ const stats = computed(() => [
     icon: "bi:journal-x",
   },
   {
-    title: "Actividades Realizadas",
+    title: "Actividades totales",
     value: actividades.value?.length | '0', // Valor estático
     increase: 10,
     icon: "mynaui:chart-line",

@@ -4,14 +4,12 @@ const actividadesStore = useActividadStore();
 const { user } = useAuth();
 
 const id = user.value.id;
-const isloading = ref(true)
+const isloading = ref(true);
 
-onMounted( async () => {
+onMounted(async () => {
   await actividadesStore.fechActividadesForId(id);
-  isloading.value = false
+  isloading.value = false;
 });
-
-
 
 function formatDate(dateString) {
   const date = new Date(dateString);
@@ -28,7 +26,7 @@ function formatDate(dateString) {
 function getLocalDate() {
   const ahora = new Date();
   const year = ahora.getFullYear();
-  const month = String(ahora.getMonth()+ 1).padStart(2, "0");
+  const month = String(ahora.getMonth() + 1).padStart(2, "0");
   const day = String(ahora.getDate()).padStart(2, "0");
   return `${year}-${month}-${day}`;
 }
@@ -102,15 +100,24 @@ const filteredActividades = computed(() => {
       <nav class="px-8 min-w-fit">
         <div class="flex flex-col">
           <div class="flex flex-col gap-2">
-            <button class="text-start text-sm flex items-center" @click="updateState('')">
-              <Icon name="hugeicons:task-01" class="mr-2" size="20px" ></Icon
+            <button
+              class="text-start text-sm flex items-center"
+              @click="updateState('')"
+            >
+              <Icon name="hugeicons:task-01" class="mr-2" size="20px"></Icon
               >Todas las Tareas
             </button>
-            <button class="text-start text-sm flex items-center" @click="updateState('Completada')">
-              <Icon name="hugeicons:tick-01" class="mr-2" size="20px" ></Icon
+            <button
+              class="text-start text-sm flex items-center"
+              @click="updateState('Completada')"
+            >
+              <Icon name="hugeicons:tick-01" class="mr-2" size="20px"></Icon
               >Completadas
             </button>
-            <button class="text-start text-sm flex items-center" @click="updateState('En progreso')">
+            <button
+              class="text-start text-sm flex items-center"
+              @click="updateState('En progreso')"
+            >
               <Icon
                 name="fluent-mdl2:processing"
                 class="mr-2"
@@ -118,7 +125,10 @@ const filteredActividades = computed(() => {
               ></Icon
               >En progreso
             </button>
-            <button class="text-start text-sm flex items-center " @click="updateState('Pendiente')">
+            <button
+              class="text-start text-sm flex items-center"
+              @click="updateState('Pendiente')"
+            >
               <Icon
                 name="hugeicons:time-quarter-pass"
                 class="mr-2"
@@ -134,23 +144,30 @@ const filteredActividades = computed(() => {
           <h1>Lista de Actividades</h1>
           <div class="flex gap-6">
             <button>Filtrar</button>
-            <input type="date" class="p-2 border rounded-lg" v-model="selectedDate" />
+            <input
+              type="date"
+              class="p-2 border rounded-lg"
+              v-model="selectedDate"
+            />
           </div>
         </header>
         <div class="flex flex-wrap gap-3">
-
-            <div v-if="isloading" v-for="n in 3"  class="border p-4 flex flex-col gap-4 flex-1 min-w-[340px] max-w-[420px] rounded-lg bg-gray-50 animate-pulse">
+          <div
+            v-if="isloading"
+            v-for="n in 3"
+            class="border p-4 flex flex-col gap-4 flex-1 min-w-[340px] max-w-[420px] rounded-lg bg-gray-50 animate-pulse"
+          >
             <div class="h-4 bg-gray-200 rounded w-1/3"></div>
             <div class="h-6 bg-gray-200 rounded w-full"></div>
             <div class="h-4 bg-gray-200 rounded w-1/2"></div>
           </div>
-            
-
+          <div v-else-if="filteredActividades.length===0">
+            <span>No se encontraron actividades asignadas</span>
+          </div>
           
-          
-        
 
-          <article v-else
+          <article
+            v-else
             v-for="actividad in filteredActividades"
             :key="actividad.id"
             class="border p-4 flex flex-col gap-4 flex-1 min-w-[340px] max-w-[420px] rounded-lg"
@@ -185,7 +202,6 @@ const filteredActividades = computed(() => {
             }}</span>
           </article>
           
-
         </div>
       </div>
     </section>

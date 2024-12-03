@@ -20,14 +20,18 @@
           </template>
         </template>
       </select>
-      <select v-if="isUser" v-model="form.dni" name="" id="" class="border py-1 px-4 rounded-md hidden" >
-          <template >
-            <option  selected >
-              
-            </option>
-          </template>
+      <select v-if="isUser" v-model="form.dni" class="border py-1 px-4 rounded-md">
+  <!-- Iterar sobre los usuarios -->
+  <template v-for="usuario in users">
+    <!-- Mostrar la opción solo si el DNI del usuario coincide con el DNI actual -->
+    <option :value="usuario.dni" v-if="dni === usuario.dni">{{ usuario.nombre+''+usuario.apellido}}</option>
+  </template>
+</select>
 
-      </select>
+     
+      
+      
+      
 
       <div class="flex gap-6">
         <label for="">Desde: <input type="date" name="" id="" v-model="form.fechaInicio"  /></label>
@@ -55,7 +59,7 @@
       </p>
     </div>
     <header class="flex justify-between text-gray-700 items-center">
-      <select v-model="periodo.dni"  name="" id="" class="border py-1 px-4 rounded-md ">
+      <select  v-if="isAdmin" v-model="periodo.dni"  name="" id="" class="border py-1 px-4 rounded-md ">
         <option value="" >Todos los colaboradores</option>
         <template v-for="usuario in users">
           <template v-for="rol in usuario.roles">
@@ -65,6 +69,13 @@
           </template>
         </template>
       </select>
+      <select v-if="isUser" v-model="periodo.dni" class="border py-1 px-4 rounded-md">
+  <!-- Iterar sobre los usuarios -->
+  <template v-for="usuario in users">
+    <!-- Mostrar la opción solo si el DNI del usuario coincide con el DNI actual -->
+    <option :value="usuario.dni" v-if="dni === usuario.dni">{{ usuario.nombre+''+usuario.apellido}}</option>
+  </template>
+</select>
       <div class="flex gap-6">
         <label for="">Desde: <input type="date" name="" id="" v-model="periodo.fechaInicio"/></label>
         <label for="">Hasta: <input type="date" name="" id="" v-model="periodo.fechaFinal" /></label>
@@ -104,16 +115,37 @@ const users = computed(() => usuario.users);
 const report = useReporteStore()
 const reportActividades = useReporteActividadesStore()
 
-const form = ref({
+
+
+const form = ref(null)
+const periodo = ref(null)
+if (isAdmin){
+   form.value = {
   fechaInicio: '',
   fechaFinal:'',
   dni:''
-})
-const periodo = ref({
+}
+ periodo.value ={
   fechaInicio: '',
   fechaFinal:'',
   dni:''
-})
+}
+
+
+}
+else if(isUser){
+   form.value = {
+  fechaInicio: '',
+  fechaFinal:'',
+  dni:dni
+}
+ periodo.value = {
+  fechaInicio: '',
+  fechaFinal:'',
+  dni:dni
+}
+
+}
 
 
 onMounted(() => {
