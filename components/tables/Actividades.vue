@@ -16,7 +16,7 @@
 
 
 
-      <tbody>
+      <tbody v-if="isAdmin">
         <tr v-for="item in actividades" class="border-b hover:bg-gray-100">
           <td class="py-2 px-4">
             <div class="flex items-center">
@@ -37,6 +37,30 @@
       
 
       </tbody>
+      <tbody v-else>
+        <tr v-for="item in actividades" class="border-b hover:bg-gray-100"
+        :key="item.id || item.usuario?.dni" >
+          <template v-if="item.usuario && item.usuario.dni === dni">
+          <td class="py-2 px-4">
+            <div class="flex items-center">
+              <img class="h-8 max-w-8 rounded-full mr-4" :src="getbase(item.usuario.foto.data)" >
+              <div>
+                <div class="font-medium">{{ item.usuario.nombre +' '+  item.usuario.apellido }}</div>
+                <div class="text-gray-500 text-xs">Ing. Software con IA</div>
+              </div>
+            </div>
+          </td>
+          <td class="py-2 px-4 text-sm">{{ item.usuario.dni }}</td>
+          <td class="py-2 px-4 text-sm">{{ item.actividad }}</td>
+          <td class="py-2 px-4 text-sm">{{ item.fecha }}</td>
+          <td class="py-2 px-4 text-sm">{{ item.estado.stado_actividad }}</td>
+          
+        </template>
+          
+        </tr>
+      
+
+      </tbody>
     </table>
   </div>
   </div>
@@ -45,6 +69,12 @@
 <script  setup>
 const actividadesStore = new useActividadStore();
 const actividades = computed(() => actividadesStore.actividades);
+const sessionStore = useSessionStore();
+const isAdmin = sessionStore.isAdmin;
+const isUser = sessionStore.isUser;
+const { user } = useAuth();
+
+const dni = user.value.dni;
 
 onMounted(async () => {
   await actividadesStore.fetchActividades();

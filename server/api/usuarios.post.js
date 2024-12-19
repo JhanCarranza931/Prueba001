@@ -32,21 +32,19 @@ export default defineEventHandler(async (event) => {
       });
     }
 
-    // Extrae campos del formulario
     const { dni, nombre, apellido, carrera, correo, password, telefono, rol } = fields;
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Busca el rol en la base de datos
     const searchRol = await prisma.roles.findUnique({
       where: { rol: rol },
-    });
+    }); 
 
     if (!searchRol) {
       throw createError({
         statusCode: 400,
         message: 'Rol no encontrado',
       });
-    }
+    } 
 
     // Crea el usuario con la imagen en formato binario
     const NewUsuario = await prisma.usuario.create({

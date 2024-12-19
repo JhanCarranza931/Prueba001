@@ -103,15 +103,15 @@ onMounted(() => {
           </tr>
         </thead>
         <tbody v-for="asis in asistencia">
-          <tr class="border-b">
-            <td class="py-4 px-6 text-gray-600" v-if="asis.usuario.id === id">
+          <tr>
+            <td class="py-2 px-6 text-gray-600" v-if="asis.usuario.id === id">
               {{ formatDate(asis.hora_entrada) }}
             </td>
-            <td class="py-4 px-6 text-gray-600" v-if="asis.usuario.id === id">
+            <td class="py-2 px-6 text-gray-600" v-if="asis.usuario.id === id">
               {{ formatDate(asis.hora_salida) }}
             </td>
 
-            <td class="py-4 px-6" v-if="asis.usuario.id === id">
+            <td class="py-2 px-6" v-if="asis.usuario.id === id">
               <span
                 class="inline-flex items-center gap-3 px-5 py-1 text-sm font-semibold text-[#00AE34] bg-[#E7FFDC] rounded-full"
               >

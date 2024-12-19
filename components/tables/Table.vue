@@ -8,6 +8,15 @@ const fechActividades = async () => {
 };
 onMounted(fechActividades);
 console.log("Actividades: ", actividades);
+
+const getbase = (data) => {
+  if (import.meta.client) {
+    return `data:image/jpeg;base64,${btoa(
+      String.fromCharCode(...new Uint8Array(data))
+    )}`;
+  }
+  return "";
+};
 </script>
 
 <template>
@@ -66,7 +75,7 @@ console.log("Actividades: ", actividades);
                       <div class="flex items-center gap-x-2">
                         <img
                           class="object-cover w-10 h-10 rounded-full"
-                          src="https://pstangarana.com/wp-content/uploads/2024/07/BECADO-g-SN-3.jpg"
+                          :src="getbase(actividad.usuario.foto.data)"
                           alt=""
                         />
                         <div>
