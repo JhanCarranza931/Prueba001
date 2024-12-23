@@ -7,7 +7,6 @@ export default defineEventHandler(async (event)=>{
     const {actividad, id_user,id_estado,limit} = body
     const limitdate = new Date(limit)
     console.log(body)
-
     try {
         const NewActividad= await prisma.actividades.create({
             data:{

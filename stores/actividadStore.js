@@ -27,7 +27,7 @@ export const useActividadStore = defineStore('actividades', {
       console.log(this.userActividad)
       
     },
-    // Actualizar el estado de una actividad
+
     async updateEstadoActividad(id_actividad, id_estado) {
       const response =  $fetch('/api/actividadestado', {
         method: 'PUT',

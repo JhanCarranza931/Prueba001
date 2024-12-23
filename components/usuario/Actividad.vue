@@ -2,12 +2,14 @@
 const actividadesStore = useActividadStore();
 
 const { user } = useAuth();
+const dni = user.value.dni;
 
 const id = user.value.id;
 const isloading = ref(true);
 
+const useractividad = ref(null)
 onMounted(async () => {
-  await actividadesStore.fechActividadesForId(id);
+   useractividad.value = await actividadesStore.fechActividadesForId(id);
   isloading.value = false;
 });
 
@@ -165,11 +167,13 @@ const filteredActividades = computed(() => {
             <span>No se encontraron actividades asignadas</span>
           </div>
           
+<template v-else v-for="actividad in filteredActividades"
+:key="actividad.id">
 
+<template v-if="actividad.usuario.dni === dni">
           <article
-            v-else
-            v-for="actividad in filteredActividades"
-            :key="actividad.id"
+    
+            
             class="border p-4 flex flex-col gap-4 flex-1 min-w-[340px] max-w-[420px] rounded-lg"
             :class="{
               'border-[#ffae0077]':
@@ -179,7 +183,13 @@ const filteredActividades = computed(() => {
               'border-[#FF3300]':
                 actividad.estado.stado_actividad === 'Pendiente',
             }"
+     
           >
+       
+       
+      
+          
+          
             <div class="flex justify-between">
               <span
                 class="rounded-full px-3 py-1 font-semibold text-[13.33px] cursor-pointer"
@@ -193,14 +203,17 @@ const filteredActividades = computed(() => {
                 }"
               >
                 •
-                {{ actividad.estado.stado_actividad }}
+                {{actividad.estado.stado_actividad }}
               </span>
             </div>
             <p>{{ actividad.actividad }}</p>
             <span class="text-sm text-gray-800">Fecha Limite : {{
               formatDate(actividad.fecha_limite)
             }}</span>
+            
           </article>
+        </template>
+        </template>
           
         </div>  
       </div>
