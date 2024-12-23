@@ -3,13 +3,13 @@ import { ref, computed, onMounted } from "vue";
 import { useUserStore } from "@/stores/userStore";
 
 const userStore = useUserStore();
-const isloading = ref(true); // Estado de carga inicial
+const isloading = ref(true); 
 
 const coworking = computed(() => userStore.users);
 
 onMounted(async () => {
   await userStore.fetchUsers();
-  isloading.value = false; // Actualiza el estado de carga cuando los datos están listos
+  isloading.value = false; 
 });
 
 const previewImage = ref(null);
@@ -36,7 +36,7 @@ const handleEdit = (userId) => {
   if (user) {
     Object.assign(form.value, user);
     console.log(form.value)
-    previewImage.value = user.foto || null; // Previsualiza la foto existente si está disponible
+    previewImage.value = user.foto || null;    
 
   }
 };

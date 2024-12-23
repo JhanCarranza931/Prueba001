@@ -18,13 +18,13 @@ export default defineEventHandler(async (event) => {
   });
 
   if (!user) {
-    return { statusCode: 401, body: { success: false, message: 'Invalid username or password' } };
+    return { statusCode: 401, body: { success: false, message: 'Usuario o contraseña incorrecta' } };
   }
 
   const validPassword = await bcrypt.compare(password, user.password);
 
   if (!validPassword) {
-    return { statusCode: 401, body: { success: false, message: 'Invalid username or password' } };
+    return { statusCode: 401, body: { success: false, message: 'Usuario o contraseña Incorrecta' } };
   }
 
   const token = jwt.sign(

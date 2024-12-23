@@ -197,12 +197,12 @@ const filteredActividades = computed(() => {
               </span>
             </div>
             <p>{{ actividad.actividad }}</p>
-            <span class="text-sm text-gray-800">{{
-              formatDate(actividad.fecha)
+            <span class="text-sm text-gray-800">Fecha Limite : {{
+              formatDate(actividad.fecha_limite)
             }}</span>
           </article>
           
-        </div>
+        </div>  
       </div>
     </section>
   </main>
